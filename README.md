@@ -152,7 +152,13 @@ Please note the following information if you want to compile new model using PIM
 
 sunxiaotian21s@ict.ac.cn
 
+# License
+
+[Apache License v2.0](https://github.com/sunxt99/PIMCOMP-NN/blob/master/LICENSE)
+
 # Acknowledgement
+
+[onnx](https://github.com/onnx/onnx)
 
 [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
