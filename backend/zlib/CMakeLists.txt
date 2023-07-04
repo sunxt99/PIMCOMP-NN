@@ -63,17 +63,17 @@ if(MSVC)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
-if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
-    # If we're doing an out of source build and the user has a zconf.h
-    # in their source tree...
-    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h)
-        message(STATUS "Renaming")
-        message(STATUS "    ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h")
-        message(STATUS "to 'zconf.h.included' because this file is included with zlib")
-        message(STATUS "but CMake generates it automatically in the build directory.")
-        file(RENAME ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h.included)
-  endif()
-endif()
+# if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
+#     # If we're doing an out of source build and the user has a zconf.h
+#     # in their source tree...
+#     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h)
+#         message(STATUS "Renaming")
+#         message(STATUS "    ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h")
+#         message(STATUS "to 'zconf.h.included' because this file is included with zlib")
+#         message(STATUS "but CMake generates it automatically in the build directory.")
+#         file(RENAME ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h ${CMAKE_CURRENT_SOURCE_DIR}/zconf.h.included)
+#   endif()
+# endif()
 
 set(ZLIB_PC ${CMAKE_CURRENT_BINARY_DIR}/zlib.pc)
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/zlib.pc.cmakein
@@ -152,6 +152,8 @@ add_library(zlibstatic STATIC ${ZLIB_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HD
 set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
 set_target_properties(zlib PROPERTIES SOVERSION 1)
 
+target_include_directories(zlibstatic PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+
 if(NOT CYGWIN)
     # This property causes shared libraries on Linux to have the full version
     # encoded into their final filename.  We disable this on Cygwin because
@@ -174,21 +176,21 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
     set_target_properties(zlib PROPERTIES SUFFIX "1.dll")
 endif()
 
-if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL )
-    install(TARGETS zlib zlibstatic
-        RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
-        ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
-        LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
-endif()
-if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL )
-    install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
-endif()
-if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
-    install(FILES zlib.3 DESTINATION "${INSTALL_MAN_DIR}/man3")
-endif()
-if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
-    install(FILES ${ZLIB_PC} DESTINATION "${INSTALL_PKGCONFIG_DIR}")
-endif()
+# if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL )
+#     install(TARGETS zlib zlibstatic
+#         RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
+#         ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
+#         LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
+# endif()
+# if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL )
+#     install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
+# endif()
+# if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
+#     install(FILES zlib.3 DESTINATION "${INSTALL_MAN_DIR}/man3")
+# endif()
+# if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
+#     install(FILES ${ZLIB_PC} DESTINATION "${INSTALL_PKGCONFIG_DIR}")
+# endif()
 
 #============================================================================
 # Example binaries
