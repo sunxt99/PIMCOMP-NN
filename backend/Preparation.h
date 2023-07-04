@@ -8,6 +8,7 @@
 #include "../common.h"
 #include "../configure.h"
 
+void LoadHardwareConfiguration();
 void EliminatePaddingOperator(std::string model_name, Json::Value & DNNInfo);
 void EliminateBatchNormOperator(std::string model_name, Json::Value & DNNInfo);
 void PreProcess(Json::Value & DNNInfo);

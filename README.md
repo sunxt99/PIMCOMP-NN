@@ -146,7 +146,7 @@ Please note the following information if you want to compile new model using PIM
 
 # Citing PIMCOMP-NN
 
-**Citation Information**: Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators, in Design Automation Conference, 2023
+**Citation Information**: Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, [PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators](https://typora-ict.oss-cn-beijing.aliyuncs.com/paper/PIMCOMP.pdf), in Design Automation Conference, 2023
 
 # Author
 

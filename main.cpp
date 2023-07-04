@@ -33,6 +33,7 @@ void PIMCOMP(std::string model_name, std::string replicating_method, std::string
     }
 
     std::cout << "=========================== PreProcessing ===========================" << std::endl;
+    LoadHardwareConfiguration();
     GetStructNodeListFromJson(DNNInfo);
     GetConvPoolInputOutputInfo();
     GetConvPoolInputOutputInfoForInputPreparation();
@@ -129,13 +130,13 @@ void PIMCOMP(std::string model_name, std::string replicating_method, std::string
 
 int main(int argc, char* argv[])
 {
-    std::string model_name = "";
+    std::string model_name = "resnet18";
     std::string replicating_method = "balance";
     std::string pipeline_granularity = "batch";
     std::string output_need = "NO";
     std::string verification_need = "NO";
     std::string intermediate_need = "NO";
-    std::string simulation_need = "NO";
+    std::string simulation_need = "YES";
 
     int nOptionIndex = 1;
     while (nOptionIndex < argc)

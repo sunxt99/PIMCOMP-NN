@@ -81,6 +81,41 @@ std::vector<std::vector<int>> PIMCOMP_GUI_inter_core_communication_volume;
 bool instruction_with_reload;
 bool element_pipeline;
 
+int ArithmeticPrecision;
+int CellPrecision;
+int CrossbarW;
+int CrossbarH;
+int CoreW;  // #Crossbars every row in Core (Logical)
+int CoreH;  // #Crossbars every column in Core (Logical)
+int ChipW;  // #Cores every row in Chip
+int ChipH;  // #Cores every column in Chip
+
+void LoadHardwareConfiguration()
+{
+    Json::Reader configReader;
+    Json::Value hardwareConfig;
+    std::ifstream jsonFile("../config.json");
+    if (!configReader.parse(jsonFile, hardwareConfig, true))
+    {
+        std::cout << "Open Config Json File Error" << std::endl;
+        return;
+    }
+
+    ArithmeticPrecision = hardwareConfig["chip_config"]["core_config"]["matrix_config"]["adc_count"].asInt();
+    CellPrecision = hardwareConfig["chip_config"]["core_config"]["matrix_config"]["cell_precision"].asInt();
+    CrossbarH = hardwareConfig["chip_config"]["core_config"]["matrix_config"]["xbar_size"][0].asInt();
+//    CrossbarH = 128;
+    CrossbarW = hardwareConfig["chip_config"]["core_config"]["matrix_config"]["xbar_size"][1].asInt();
+//    CrossbarW = 128;
+    CoreH = hardwareConfig["chip_config"]["core_config"]["matrix_config"]["xbar_array_count"].asInt();  // #Crossbars every row in Core (Logical)
+    CoreW = 1;  // #Crossbars every column in Core (Logical)
+    ChipH = hardwareConfig["chip_config"]["network_config"]["layout"][0].asInt();  // #Cores every row in Chip
+//    ChipH = 12;
+    ChipW = hardwareConfig["chip_config"]["network_config"]["layout"][1].asInt();  // #Cores every column in Chip
+//    ChipW = 12;
+    std::cout << ArithmeticPrecision << " " << CellPrecision << " " << CrossbarW << " " << CrossbarH << " " << CoreW << " " << CoreH << " " << ChipW << " " << ChipH << std::endl;
+}
+
 void EliminatePaddingOperator(std::string model_name, Json::Value & DNNInfo)
 {
     std::set<int> pad_node_index_set;

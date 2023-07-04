@@ -1,0 +1,57 @@
+{
+  "chip_config": {
+    "core_config": {
+      "period": 1 ,
+      "matrix_config": {
+        "xbar_array_count": 64,
+        "period": 1,
+        "pipeline_mode": true,
+        "dac_resolution": 1,
+        "dac_count": 128,
+        "xbar_size": [128,128],
+        "cell_precision": 2,
+        "xbar_latency": 7,
+        "xbar_read_power": 22.24,
+        "sample_hold_latency_cycle": 1,
+        "adc_resolution": 8,
+        "adc_latency_cycle": 20,
+        "adc_static_power": 0.322,
+        "adc_dynamic_power": 1.135,
+        "adc_count": 16,
+        "shift_adder_latency_cycle": 1,
+        "output_buffer_latency_cycle": 1
+      },
+      "vector_width": 32,
+      "vector_latency_cycle": 4,
+      "local_memory_config": {
+        "data_width": 64,
+        "period": 1,
+        "write_latency_cycle": 30,
+        "read_latency_cycle": 20
+      },
+      "global_memory_switch_id": -10
+    },
+    "global_memory_config": {
+      "data_width": 32,
+      "period": 1,
+      "write_latency_cycle": 50,
+      "read_latency_cycle": 40
+    },
+    "network_config": {
+      "bus_topology": "mesh",
+      "bus_width": 32,
+      "layout": [
+        12,
+        12
+      ],
+      "net_config_file_path": "network.json"
+    },
+    "core_cnt": 136,
+    "global_memory_switch_id": -10
+  },
+  "sim_config": {
+    "sim_mode": 0,
+    "sim_time": 200,
+    "report_verbose_level": 0
+  }
+}

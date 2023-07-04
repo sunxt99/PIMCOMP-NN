@@ -7,6 +7,15 @@
 
 #include "../common.h"
 
+extern int ArithmeticPrecision;
+extern int CellPrecision;
+extern int CrossbarW;
+extern int CrossbarH;
+extern int CoreW;  // #Crossbars every row in Core (Logical)
+extern int CoreH;  // #Crossbars every column in Core (Logical)
+extern int ChipW;  // #Cores every row in Chip
+extern int ChipH;  // #Cores every column in Chip
+
 extern bool instruction_with_reload;
 extern bool element_pipeline;
 extern int comm_pair_total_num;
