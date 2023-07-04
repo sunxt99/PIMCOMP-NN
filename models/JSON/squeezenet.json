@@ -1,0 +1,1997 @@
+{
+    "node_list": [
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "conv1_1"
+            ],
+            "consumer_num": 1,
+            "index": 0,
+            "name": "data_0",
+            "operation": "OP_INPUT",
+            "output_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "provider_num": 0,
+            "new_node_index": 0,
+            "consumer_index": [
+                1
+            ],
+            "provider_index": []
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "pool1_1"
+            ],
+            "consumer_num": 1,
+            "index": 1,
+            "name": "conv1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                111,
+                111
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 3,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 1
+            },
+            "provider": [
+                "data_0"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "new_node_index": 1,
+            "consumer_index": [
+                2
+            ],
+            "provider_index": [
+                0
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire2/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 2,
+            "name": "pool1_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "conv1_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                111,
+                111
+            ],
+            "new_node_index": 2,
+            "consumer_index": [
+                3
+            ],
+            "provider_index": [
+                1
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire2/expand1x1_1",
+                "fire2/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 3,
+            "name": "fire2/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 16,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "new_node_index": 3,
+            "consumer_index": [
+                4,
+                5
+            ],
+            "provider_index": [
+                2
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire2/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 4,
+            "name": "fire2/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire2/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "new_node_index": 4,
+            "consumer_index": [
+                6
+            ],
+            "provider_index": [
+                3
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire2/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 5,
+            "name": "fire2/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 64,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire2/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "new_node_index": 5,
+            "consumer_index": [
+                6
+            ],
+            "provider_index": [
+                3
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire3/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 6,
+            "name": "fire2/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                128,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire2/expand1x1_1",
+                "fire2/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "new_node_index": 6,
+            "consumer_index": [
+                7
+            ],
+            "provider_index": [
+                4,
+                5
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire3/expand1x1_1",
+                "fire3/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 7,
+            "name": "fire3/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 128,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 16,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire2/concat_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                55,
+                55
+            ],
+            "new_node_index": 7,
+            "consumer_index": [
+                8,
+                9
+            ],
+            "provider_index": [
+                6
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire3/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 8,
+            "name": "fire3/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire3/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "new_node_index": 8,
+            "consumer_index": [
+                10
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire3/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 9,
+            "name": "fire3/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 64,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire3/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                55,
+                55
+            ],
+            "new_node_index": 9,
+            "consumer_index": [
+                10
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool3_1"
+            ],
+            "consumer_num": 1,
+            "index": 10,
+            "name": "fire3/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                128,
+                55,
+                55
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire3/expand1x1_1",
+                "fire3/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                55,
+                55
+            ],
+            "new_node_index": 10,
+            "consumer_index": [
+                11
+            ],
+            "provider_index": [
+                8,
+                9
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire4/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 11,
+            "name": "pool3_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "fire3/concat_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                55,
+                55
+            ],
+            "new_node_index": 11,
+            "consumer_index": [
+                12
+            ],
+            "provider_index": [
+                10
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire4/expand1x1_1",
+                "fire4/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 12,
+            "name": "fire4/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 128,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool3_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "new_node_index": 12,
+            "consumer_index": [
+                13,
+                14
+            ],
+            "provider_index": [
+                11
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire4/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 13,
+            "name": "fire4/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire4/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "new_node_index": 13,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                12
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire4/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 14,
+            "name": "fire4/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 128,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire4/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "new_node_index": 14,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                12
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire5/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 15,
+            "name": "fire4/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                256,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire4/expand1x1_1",
+                "fire4/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "new_node_index": 15,
+            "consumer_index": [
+                16
+            ],
+            "provider_index": [
+                13,
+                14
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire5/expand1x1_1",
+                "fire5/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 16,
+            "name": "fire5/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire4/concat_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                27,
+                27
+            ],
+            "new_node_index": 16,
+            "consumer_index": [
+                17,
+                18
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire5/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 17,
+            "name": "fire5/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire5/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "new_node_index": 17,
+            "consumer_index": [
+                19
+            ],
+            "provider_index": [
+                16
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire5/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 18,
+            "name": "fire5/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 128,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire5/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                27,
+                27
+            ],
+            "new_node_index": 18,
+            "consumer_index": [
+                19
+            ],
+            "provider_index": [
+                16
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool5_1"
+            ],
+            "consumer_num": 1,
+            "index": 19,
+            "name": "fire5/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                256,
+                27,
+                27
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire5/expand1x1_1",
+                "fire5/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                27,
+                27
+            ],
+            "new_node_index": 19,
+            "consumer_index": [
+                20
+            ],
+            "provider_index": [
+                17,
+                18
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire6/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 20,
+            "name": "pool5_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "fire5/concat_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                27,
+                27
+            ],
+            "new_node_index": 20,
+            "consumer_index": [
+                21
+            ],
+            "provider_index": [
+                19
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire6/expand1x1_1",
+                "fire6/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 21,
+            "name": "fire6/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 48,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool5_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "new_node_index": 21,
+            "consumer_index": [
+                22,
+                23
+            ],
+            "provider_index": [
+                20
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire6/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 22,
+            "name": "fire6/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 48,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 192,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire6/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "new_node_index": 22,
+            "consumer_index": [
+                24
+            ],
+            "provider_index": [
+                21
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire6/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 23,
+            "name": "fire6/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 48,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 192,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire6/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "new_node_index": 23,
+            "consumer_index": [
+                24
+            ],
+            "provider_index": [
+                21
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire7/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 24,
+            "name": "fire6/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                384,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire6/expand1x1_1",
+                "fire6/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "new_node_index": 24,
+            "consumer_index": [
+                25
+            ],
+            "provider_index": [
+                22,
+                23
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire7/expand1x1_1",
+                "fire7/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 25,
+            "name": "fire7/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 384,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 48,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire6/concat_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                384,
+                13,
+                13
+            ],
+            "new_node_index": 25,
+            "consumer_index": [
+                26,
+                27
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire7/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 26,
+            "name": "fire7/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 48,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 192,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire7/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "new_node_index": 26,
+            "consumer_index": [
+                28
+            ],
+            "provider_index": [
+                25
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire7/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 27,
+            "name": "fire7/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 48,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 192,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire7/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                48,
+                13,
+                13
+            ],
+            "new_node_index": 27,
+            "consumer_index": [
+                28
+            ],
+            "provider_index": [
+                25
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire8/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 28,
+            "name": "fire7/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                384,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire7/expand1x1_1",
+                "fire7/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                13,
+                13
+            ],
+            "new_node_index": 28,
+            "consumer_index": [
+                29
+            ],
+            "provider_index": [
+                26,
+                27
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire8/expand1x1_1",
+                "fire8/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 29,
+            "name": "fire8/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 384,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire7/concat_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                384,
+                13,
+                13
+            ],
+            "new_node_index": 29,
+            "consumer_index": [
+                30,
+                31
+            ],
+            "provider_index": [
+                28
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire8/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 30,
+            "name": "fire8/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 256,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire8/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "new_node_index": 30,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                29
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire8/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 31,
+            "name": "fire8/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire8/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "new_node_index": 31,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                29
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire9/squeeze1x1_1"
+            ],
+            "consumer_num": 1,
+            "index": 32,
+            "name": "fire8/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire8/expand1x1_1",
+                "fire8/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "new_node_index": 32,
+            "consumer_index": [
+                33
+            ],
+            "provider_index": [
+                30,
+                31
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire9/expand1x1_1",
+                "fire9/expand3x3_1"
+            ],
+            "consumer_num": 2,
+            "index": 33,
+            "name": "fire9/squeeze1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire8/concat_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "new_node_index": 33,
+            "consumer_index": [
+                34,
+                35
+            ],
+            "provider_index": [
+                32
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire9/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 34,
+            "name": "fire9/expand1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 256,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire9/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "new_node_index": 34,
+            "consumer_index": [
+                36
+            ],
+            "provider_index": [
+                33
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "fire9/concat_1"
+            ],
+            "consumer_num": 1,
+            "index": 35,
+            "name": "fire9/expand3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire9/squeeze1x1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                13,
+                13
+            ],
+            "new_node_index": 35,
+            "consumer_index": [
+                36
+            ],
+            "provider_index": [
+                33
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "fire9/concat_2"
+            ],
+            "consumer_num": 1,
+            "index": 36,
+            "name": "fire9/concat_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire9/expand1x1_1",
+                "fire9/expand3x3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                13,
+                13
+            ],
+            "new_node_index": 36,
+            "consumer_index": [
+                37
+            ],
+            "provider_index": [
+                34,
+                35
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "conv10_1"
+            ],
+            "consumer_num": 1,
+            "index": 37,
+            "name": "fire9/concat_2",
+            "operation": "OP_DROPOUT",
+            "output_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "fire9/concat_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "new_node_index": 37,
+            "consumer_index": [
+                38
+            ],
+            "provider_index": [
+                36
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "pool10_1"
+            ],
+            "consumer_num": 1,
+            "index": 38,
+            "name": "conv10_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                1000,
+                13,
+                13
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 1000,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "fire9/concat_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                13,
+                13
+            ],
+            "new_node_index": 38,
+            "consumer_index": [
+                39
+            ],
+            "provider_index": [
+                37
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "softmaxout_1"
+            ],
+            "consumer_num": 1,
+            "index": 39,
+            "name": "pool10_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                1000,
+                1,
+                1
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 1,
+                "kernel_h": 13,
+                "kernel_w": 13,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 1,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "conv10_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                1000,
+                13,
+                13
+            ],
+            "new_node_index": 39,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                38
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer_num": 0,
+            "index": 40,
+            "name": "softmaxout_1",
+            "operation": "OP_SOFTMAX",
+            "output_dim": [
+                1,
+                1000,
+                1,
+                1
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "pool10_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                1000,
+                1,
+                1
+            ],
+            "new_node_index": 40,
+            "consumer_index": [],
+            "provider_index": [
+                39
+            ]
+        }
+    ],
+    "reshape_info": {}
+}

@@ -1,0 +1,4405 @@
+{
+    "node_list": [
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "conv1/7x7_s2_1"
+            ],
+            "consumer_num": 1,
+            "index": 0,
+            "name": "data_0",
+            "operation": "OP_INPUT",
+            "output_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "provider_num": 0,
+            "new_node_index": 0,
+            "consumer_index": [
+                1
+            ],
+            "provider_index": []
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "pool1/3x3_s2_1"
+            ],
+            "consumer_num": 1,
+            "index": 1,
+            "name": "conv1/7x7_s2_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                112,
+                112
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 3,
+                "kernel_h": 7,
+                "kernel_w": 7,
+                "output_channel": 64,
+                "pad_h0": 3,
+                "pad_h1": 3,
+                "pad_w0": 3,
+                "pad_w1": 3,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 1
+            },
+            "provider": [
+                "data_0"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "new_node_index": 1,
+            "consumer_index": [
+                2
+            ],
+            "provider_index": [
+                0
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool1/norm1_1"
+            ],
+            "consumer_num": 1,
+            "index": 2,
+            "name": "pool1/3x3_s2_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 2,
+                "pad_w0": 0,
+                "pad_w1": 2,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "conv1/7x7_s2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                112,
+                112
+            ],
+            "new_node_index": 2,
+            "consumer_index": [
+                3
+            ],
+            "provider_index": [
+                1
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "conv2/3x3_reduce_1"
+            ],
+            "consumer_num": 1,
+            "index": 3,
+            "name": "pool1/norm1_1",
+            "operation": "OP_LRN",
+            "output_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "pool1/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "new_node_index": 3,
+            "consumer_index": [
+                4
+            ],
+            "provider_index": [
+                2
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "conv2/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 4,
+            "name": "conv2/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool1/norm1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "new_node_index": 4,
+            "consumer_index": [
+                5
+            ],
+            "provider_index": [
+                3
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "conv2/norm2_1"
+            ],
+            "consumer_num": 1,
+            "index": 5,
+            "name": "conv2/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 64,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 192,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "conv2/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                56,
+                56
+            ],
+            "new_node_index": 5,
+            "consumer_index": [
+                6
+            ],
+            "provider_index": [
+                4
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool2/3x3_s2_1"
+            ],
+            "consumer_num": 1,
+            "index": 6,
+            "name": "conv2/norm2_1",
+            "operation": "OP_LRN",
+            "output_dim": [
+                1,
+                192,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "conv2/3x3_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                56,
+                56
+            ],
+            "new_node_index": 6,
+            "consumer_index": [
+                7
+            ],
+            "provider_index": [
+                5
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_3a/1x1_1",
+                "inception_3a/3x3_reduce_1",
+                "inception_3a/5x5_reduce_1",
+                "inception_3a/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 7,
+            "name": "pool2/3x3_s2_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 2,
+                "pad_w0": 0,
+                "pad_w1": 2,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "conv2/norm2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                56,
+                56
+            ],
+            "new_node_index": 7,
+            "consumer_index": [
+                8,
+                9,
+                11,
+                13
+            ],
+            "provider_index": [
+                6
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 8,
+            "name": "inception_3a/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 192,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool2/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "new_node_index": 8,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 9,
+            "name": "inception_3a/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                96,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 192,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 96,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool2/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "new_node_index": 9,
+            "consumer_index": [
+                10
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 10,
+            "name": "inception_3a/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 96,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 128,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                96,
+                28,
+                28
+            ],
+            "new_node_index": 10,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                9
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 11,
+            "name": "inception_3a/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                16,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 192,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 16,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool2/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "new_node_index": 11,
+            "consumer_index": [
+                12
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 12,
+            "name": "inception_3a/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 32,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                28,
+                28
+            ],
+            "new_node_index": 12,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                11
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_3a/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 13,
+            "name": "inception_3a/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "pool2/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "new_node_index": 13,
+            "consumer_index": [
+                14
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 14,
+            "name": "inception_3a/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 192,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "new_node_index": 14,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                13
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_3b/1x1_1",
+                "inception_3b/3x3_reduce_1",
+                "inception_3b/5x5_reduce_1",
+                "inception_3b/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 15,
+            "name": "inception_3a/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_3a/1x1_1",
+                "inception_3a/3x3_1",
+                "inception_3a/5x5_1",
+                "inception_3a/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                28,
+                28
+            ],
+            "new_node_index": 15,
+            "consumer_index": [
+                16,
+                17,
+                19,
+                21
+            ],
+            "provider_index": [
+                8,
+                10,
+                12,
+                14
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 16,
+            "name": "inception_3b/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 16,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 17,
+            "name": "inception_3b/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 17,
+            "consumer_index": [
+                18
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 18,
+            "name": "inception_3b/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 128,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 192,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3b/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                28,
+                28
+            ],
+            "new_node_index": 18,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                17
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 19,
+            "name": "inception_3b/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 19,
+            "consumer_index": [
+                20
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 20,
+            "name": "inception_3b/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                96,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 96,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3b/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                28,
+                28
+            ],
+            "new_node_index": 20,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                19
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_3b/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 21,
+            "name": "inception_3b/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_3a/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 21,
+            "consumer_index": [
+                22
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_3b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 22,
+            "name": "inception_3b/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 256,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_3b/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 22,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                21
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool3/3x3_s2_1"
+            ],
+            "consumer_num": 1,
+            "index": 23,
+            "name": "inception_3b/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                480,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_3b/1x1_1",
+                "inception_3b/3x3_1",
+                "inception_3b/5x5_1",
+                "inception_3b/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                28,
+                28
+            ],
+            "new_node_index": 23,
+            "consumer_index": [
+                24
+            ],
+            "provider_index": [
+                16,
+                18,
+                20,
+                22
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4a/1x1_1",
+                "inception_4a/3x3_reduce_1",
+                "inception_4a/5x5_reduce_1",
+                "inception_4a/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 24,
+            "name": "pool3/3x3_s2_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 2,
+                "pad_w0": 0,
+                "pad_w1": 2,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "inception_3b/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                28,
+                28
+            ],
+            "new_node_index": 24,
+            "consumer_index": [
+                25,
+                26,
+                28,
+                30
+            ],
+            "provider_index": [
+                23
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 25,
+            "name": "inception_4a/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 480,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 192,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool3/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "new_node_index": 25,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 26,
+            "name": "inception_4a/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                96,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 480,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 96,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool3/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "new_node_index": 26,
+            "consumer_index": [
+                27
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 27,
+            "name": "inception_4a/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                208,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 96,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 208,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                96,
+                14,
+                14
+            ],
+            "new_node_index": 27,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                26
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 28,
+            "name": "inception_4a/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                16,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 480,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 16,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool3/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "new_node_index": 28,
+            "consumer_index": [
+                29
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 29,
+            "name": "inception_4a/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                48,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 16,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 48,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                16,
+                14,
+                14
+            ],
+            "new_node_index": 29,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                28
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4a/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 30,
+            "name": "inception_4a/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "pool3/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "new_node_index": 30,
+            "consumer_index": [
+                31
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 31,
+            "name": "inception_4a/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 480,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                480,
+                14,
+                14
+            ],
+            "new_node_index": 31,
+            "consumer_index": [
+                32
+            ],
+            "provider_index": [
+                30
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4b/1x1_1",
+                "inception_4b/3x3_reduce_1",
+                "inception_4b/5x5_reduce_1",
+                "inception_4b/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 32,
+            "name": "inception_4a/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_4a/1x1_1",
+                "inception_4a/3x3_1",
+                "inception_4a/5x5_1",
+                "inception_4a/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                14,
+                14
+            ],
+            "new_node_index": 32,
+            "consumer_index": [
+                33,
+                34,
+                36,
+                38
+            ],
+            "provider_index": [
+                25,
+                27,
+                29,
+                31
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 33,
+            "name": "inception_4b/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                160,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 160,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 33,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                32
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 34,
+            "name": "inception_4b/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                112,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 112,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 34,
+            "consumer_index": [
+                35
+            ],
+            "provider_index": [
+                32
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 35,
+            "name": "inception_4b/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                224,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 112,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 224,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                14,
+                14
+            ],
+            "new_node_index": 35,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                34
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 36,
+            "name": "inception_4b/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                24,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 24,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 36,
+            "consumer_index": [
+                37
+            ],
+            "provider_index": [
+                32
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 37,
+            "name": "inception_4b/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 24,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 64,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                24,
+                14,
+                14
+            ],
+            "new_node_index": 37,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                36
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4b/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 38,
+            "name": "inception_4b/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_4a/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 38,
+            "consumer_index": [
+                39
+            ],
+            "provider_index": [
+                32
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 39,
+            "name": "inception_4b/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 39,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                38
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4c/1x1_1",
+                "inception_4c/3x3_reduce_1",
+                "inception_4c/5x5_reduce_1",
+                "inception_4c/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 40,
+            "name": "inception_4b/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_4b/1x1_1",
+                "inception_4b/3x3_1",
+                "inception_4b/5x5_1",
+                "inception_4b/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                160,
+                14,
+                14
+            ],
+            "new_node_index": 40,
+            "consumer_index": [
+                41,
+                42,
+                44,
+                46
+            ],
+            "provider_index": [
+                33,
+                35,
+                37,
+                39
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 41,
+            "name": "inception_4c/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 41,
+            "consumer_index": [
+                48
+            ],
+            "provider_index": [
+                40
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 42,
+            "name": "inception_4c/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 42,
+            "consumer_index": [
+                43
+            ],
+            "provider_index": [
+                40
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 43,
+            "name": "inception_4c/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 128,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "new_node_index": 43,
+            "consumer_index": [
+                48
+            ],
+            "provider_index": [
+                42
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 44,
+            "name": "inception_4c/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                24,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 24,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4b/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 44,
+            "consumer_index": [
+                45
+            ],
+            "provider_index": [
+                40
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 45,
+            "name": "inception_4c/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 24,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 64,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                24,
+                14,
+                14
+            ],
+            "new_node_index": 45,
+            "consumer_index": [
+                48
+            ],
+            "provider_index": [
+                44
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4c/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 46,
+            "name": "inception_4c/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_4b/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 46,
+            "consumer_index": [
+                47
+            ],
+            "provider_index": [
+                40
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4c/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 47,
+            "name": "inception_4c/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 47,
+            "consumer_index": [
+                48
+            ],
+            "provider_index": [
+                46
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4d/1x1_1",
+                "inception_4d/3x3_reduce_1",
+                "inception_4d/5x5_reduce_1",
+                "inception_4d/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 48,
+            "name": "inception_4c/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_4c/1x1_1",
+                "inception_4c/3x3_1",
+                "inception_4c/5x5_1",
+                "inception_4c/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "new_node_index": 48,
+            "consumer_index": [
+                49,
+                50,
+                52,
+                54
+            ],
+            "provider_index": [
+                41,
+                43,
+                45,
+                47
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 49,
+            "name": "inception_4d/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                112,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 112,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 49,
+            "consumer_index": [
+                56
+            ],
+            "provider_index": [
+                48
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 50,
+            "name": "inception_4d/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                144,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 144,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 50,
+            "consumer_index": [
+                51
+            ],
+            "provider_index": [
+                48
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 51,
+            "name": "inception_4d/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                288,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 144,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 288,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                144,
+                14,
+                14
+            ],
+            "new_node_index": 51,
+            "consumer_index": [
+                56
+            ],
+            "provider_index": [
+                50
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 52,
+            "name": "inception_4d/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4c/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 52,
+            "consumer_index": [
+                53
+            ],
+            "provider_index": [
+                48
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 53,
+            "name": "inception_4d/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 64,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                14,
+                14
+            ],
+            "new_node_index": 53,
+            "consumer_index": [
+                56
+            ],
+            "provider_index": [
+                52
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4d/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 54,
+            "name": "inception_4d/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_4c/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 54,
+            "consumer_index": [
+                55
+            ],
+            "provider_index": [
+                48
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4d/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 55,
+            "name": "inception_4d/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 512,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 64,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 55,
+            "consumer_index": [
+                56
+            ],
+            "provider_index": [
+                54
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4e/1x1_1",
+                "inception_4e/3x3_reduce_1",
+                "inception_4e/5x5_reduce_1",
+                "inception_4e/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 56,
+            "name": "inception_4d/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_4d/1x1_1",
+                "inception_4d/3x3_1",
+                "inception_4d/5x5_1",
+                "inception_4d/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                14,
+                14
+            ],
+            "new_node_index": 56,
+            "consumer_index": [
+                57,
+                58,
+                60,
+                62
+            ],
+            "provider_index": [
+                49,
+                51,
+                53,
+                55
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 57,
+            "name": "inception_4e/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 528,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 256,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "new_node_index": 57,
+            "consumer_index": [
+                64
+            ],
+            "provider_index": [
+                56
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 58,
+            "name": "inception_4e/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                160,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 528,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 160,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "new_node_index": 58,
+            "consumer_index": [
+                59
+            ],
+            "provider_index": [
+                56
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 59,
+            "name": "inception_4e/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                320,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 160,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 320,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4e/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                160,
+                14,
+                14
+            ],
+            "new_node_index": 59,
+            "consumer_index": [
+                64
+            ],
+            "provider_index": [
+                58
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 60,
+            "name": "inception_4e/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 528,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4d/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "new_node_index": 60,
+            "consumer_index": [
+                61
+            ],
+            "provider_index": [
+                56
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 61,
+            "name": "inception_4e/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 128,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4e/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                14,
+                14
+            ],
+            "new_node_index": 61,
+            "consumer_index": [
+                64
+            ],
+            "provider_index": [
+                60
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_4e/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 62,
+            "name": "inception_4e/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_4d/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "new_node_index": 62,
+            "consumer_index": [
+                63
+            ],
+            "provider_index": [
+                56
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_4e/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 63,
+            "name": "inception_4e/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 528,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_4e/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                528,
+                14,
+                14
+            ],
+            "new_node_index": 63,
+            "consumer_index": [
+                64
+            ],
+            "provider_index": [
+                62
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool4/3x3_s2_1"
+            ],
+            "consumer_num": 1,
+            "index": 64,
+            "name": "inception_4e/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                832,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_4e/1x1_1",
+                "inception_4e/3x3_1",
+                "inception_4e/5x5_1",
+                "inception_4e/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                14,
+                14
+            ],
+            "new_node_index": 64,
+            "consumer_index": [
+                65
+            ],
+            "provider_index": [
+                57,
+                59,
+                61,
+                63
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_5a/1x1_1",
+                "inception_5a/3x3_reduce_1",
+                "inception_5a/5x5_reduce_1",
+                "inception_5a/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 65,
+            "name": "pool4/3x3_s2_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 0,
+                "pad_h1": 2,
+                "pad_w0": 0,
+                "pad_w1": 2,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "inception_4e/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                14,
+                14
+            ],
+            "new_node_index": 65,
+            "consumer_index": [
+                66,
+                67,
+                69,
+                71
+            ],
+            "provider_index": [
+                64
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 66,
+            "name": "inception_5a/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 256,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool4/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 66,
+            "consumer_index": [
+                73
+            ],
+            "provider_index": [
+                65
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 67,
+            "name": "inception_5a/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                160,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 160,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool4/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 67,
+            "consumer_index": [
+                68
+            ],
+            "provider_index": [
+                65
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 68,
+            "name": "inception_5a/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                320,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 160,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 320,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                160,
+                7,
+                7
+            ],
+            "new_node_index": 68,
+            "consumer_index": [
+                73
+            ],
+            "provider_index": [
+                67
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 69,
+            "name": "inception_5a/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                32,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 32,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "pool4/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 69,
+            "consumer_index": [
+                70
+            ],
+            "provider_index": [
+                65
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 70,
+            "name": "inception_5a/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 32,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 128,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                32,
+                7,
+                7
+            ],
+            "new_node_index": 70,
+            "consumer_index": [
+                73
+            ],
+            "provider_index": [
+                69
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_5a/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 71,
+            "name": "inception_5a/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "pool4/3x3_s2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 71,
+            "consumer_index": [
+                72
+            ],
+            "provider_index": [
+                65
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5a/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 72,
+            "name": "inception_5a/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 72,
+            "consumer_index": [
+                73
+            ],
+            "provider_index": [
+                71
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_5b/1x1_1",
+                "inception_5b/3x3_reduce_1",
+                "inception_5b/5x5_reduce_1",
+                "inception_5b/pool_1"
+            ],
+            "consumer_num": 4,
+            "index": 73,
+            "name": "inception_5a/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_5a/1x1_1",
+                "inception_5a/3x3_1",
+                "inception_5a/5x5_1",
+                "inception_5a/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                7,
+                7
+            ],
+            "new_node_index": 73,
+            "consumer_index": [
+                74,
+                75,
+                77,
+                79
+            ],
+            "provider_index": [
+                66,
+                68,
+                70,
+                72
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 74,
+            "name": "inception_5b/1x1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                384,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 384,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 74,
+            "consumer_index": [
+                81
+            ],
+            "provider_index": [
+                73
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/3x3_1"
+            ],
+            "consumer_num": 1,
+            "index": 75,
+            "name": "inception_5b/3x3_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                192,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 192,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 75,
+            "consumer_index": [
+                76
+            ],
+            "provider_index": [
+                73
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 76,
+            "name": "inception_5b/3x3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                384,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 192,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 384,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5b/3x3_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                192,
+                7,
+                7
+            ],
+            "new_node_index": 76,
+            "consumer_index": [
+                81
+            ],
+            "provider_index": [
+                75
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/5x5_1"
+            ],
+            "consumer_num": 1,
+            "index": 77,
+            "name": "inception_5b/5x5_reduce_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                48,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 48,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5a/output_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 77,
+            "consumer_index": [
+                78
+            ],
+            "provider_index": [
+                73
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 78,
+            "name": "inception_5b/5x5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 48,
+                "kernel_h": 5,
+                "kernel_w": 5,
+                "output_channel": 128,
+                "pad_h0": 2,
+                "pad_h1": 2,
+                "pad_w0": 2,
+                "pad_w1": 2,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5b/5x5_reduce_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                48,
+                7,
+                7
+            ],
+            "new_node_index": 78,
+            "consumer_index": [
+                81
+            ],
+            "provider_index": [
+                77
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "inception_5b/pool_proj_1"
+            ],
+            "consumer_num": 1,
+            "index": 79,
+            "name": "inception_5b/pool_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_5a/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 79,
+            "consumer_index": [
+                80
+            ],
+            "provider_index": [
+                73
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "inception_5b/output_1"
+            ],
+            "consumer_num": 1,
+            "index": 80,
+            "name": "inception_5b/pool_proj_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 832,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 128,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "inception_5b/pool_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                832,
+                7,
+                7
+            ],
+            "new_node_index": 80,
+            "consumer_index": [
+                81
+            ],
+            "provider_index": [
+                79
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool5/7x7_s1_1"
+            ],
+            "consumer_num": 1,
+            "index": 81,
+            "name": "inception_5b/output_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                1024,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "inception_5b/1x1_1",
+                "inception_5b/3x3_1",
+                "inception_5b/5x5_1",
+                "inception_5b/pool_proj_1"
+            ],
+            "provider_num": 4,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                384,
+                7,
+                7
+            ],
+            "new_node_index": 81,
+            "consumer_index": [
+                82
+            ],
+            "provider_index": [
+                74,
+                76,
+                78,
+                80
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "pool5/7x7_s1_2"
+            ],
+            "consumer_num": 1,
+            "index": 82,
+            "name": "pool5/7x7_s1_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                1024,
+                1,
+                1
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 7,
+                "kernel_w": 7,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 1,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "inception_5b/output_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                1024,
+                7,
+                7
+            ],
+            "new_node_index": 82,
+            "consumer_index": [
+                83
+            ],
+            "provider_index": [
+                81
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "OC2_DUMMY_0"
+            ],
+            "consumer_num": 1,
+            "index": 83,
+            "name": "pool5/7x7_s1_2",
+            "operation": "OP_DROPOUT",
+            "output_dim": [
+                1,
+                1024,
+                1,
+                1
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "pool5/7x7_s1_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                1024,
+                1,
+                1
+            ],
+            "new_node_index": 83,
+            "consumer_index": [
+                84
+            ],
+            "provider_index": [
+                82
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "loss3/classifier_1"
+            ],
+            "consumer_num": 1,
+            "index": 84,
+            "name": "OC2_DUMMY_0",
+            "operation": "OP_RESHAPE",
+            "output_dim": [
+                1,
+                1024
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "pool5/7x7_s1_2"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                1024,
+                1,
+                1
+            ],
+            "new_node_index": 84,
+            "consumer_index": [
+                85
+            ],
+            "provider_index": [
+                83
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "prob_1"
+            ],
+            "consumer_num": 1,
+            "index": 85,
+            "name": "loss3/classifier_1",
+            "operation": "OP_FC",
+            "output_dim": [
+                1,
+                1000
+            ],
+            "output_dim_num": 2,
+            "param": {
+                "num_input": 1024,
+                "num_output": 1000,
+                "with_bias": 1
+            },
+            "provider": [
+                "OC2_DUMMY_0"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                1024
+            ],
+            "new_node_index": 85,
+            "consumer_index": [
+                86
+            ],
+            "provider_index": [
+                84
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer_num": 0,
+            "index": 86,
+            "name": "prob_1",
+            "operation": "OP_SOFTMAX",
+            "output_dim": [
+                1,
+                1000
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "loss3/classifier_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                1000
+            ],
+            "new_node_index": 86,
+            "consumer_index": [],
+            "provider_index": [
+                85
+            ]
+        }
+    ],
+    "reshape_info": {
+        "name": "loss3/classifier_1",
+        "input_dim": [
+            1,
+            1024,
+            1,
+            1
+        ],
+        "output_dim": [
+            1,
+            1024
+        ]
+    }
+}

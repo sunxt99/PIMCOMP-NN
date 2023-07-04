@@ -1,0 +1,1294 @@
+{
+    "node_list": [
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_conv0_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 0,
+            "name": "data",
+            "operation": "OP_INPUT",
+            "output_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "provider_num": 0,
+            "new_node_index": 0,
+            "consumer_index": [
+                1
+            ],
+            "provider_index": []
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv1_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 1,
+            "name": "vgg0_conv0_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 3,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 64,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "data"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "new_node_index": 1,
+            "consumer_index": [
+                2
+            ],
+            "provider_index": [
+                0
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_pool0_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 2,
+            "name": "vgg0_conv1_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                64,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 64,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 64,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv0_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                224,
+                224
+            ],
+            "new_node_index": 2,
+            "consumer_index": [
+                3
+            ],
+            "provider_index": [
+                1
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_conv2_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 3,
+            "name": "vgg0_pool0_fwd",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                64,
+                112,
+                112
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 2,
+                "kernel_w": 2,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "vgg0_conv1_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                224,
+                224
+            ],
+            "new_node_index": 3,
+            "consumer_index": [
+                4
+            ],
+            "provider_index": [
+                2
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv3_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 4,
+            "name": "vgg0_conv2_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                112,
+                112
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 64,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 128,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_pool0_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                64,
+                112,
+                112
+            ],
+            "new_node_index": 4,
+            "consumer_index": [
+                5
+            ],
+            "provider_index": [
+                3
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_pool1_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 5,
+            "name": "vgg0_conv3_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                128,
+                112,
+                112
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 128,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 128,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv2_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                112,
+                112
+            ],
+            "new_node_index": 5,
+            "consumer_index": [
+                6
+            ],
+            "provider_index": [
+                4
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_conv4_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 6,
+            "name": "vgg0_pool1_fwd",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                128,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 2,
+                "kernel_w": 2,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "vgg0_conv3_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                112,
+                112
+            ],
+            "new_node_index": 6,
+            "consumer_index": [
+                7
+            ],
+            "provider_index": [
+                5
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv5_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 7,
+            "name": "vgg0_conv4_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 128,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_pool1_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                128,
+                56,
+                56
+            ],
+            "new_node_index": 7,
+            "consumer_index": [
+                8
+            ],
+            "provider_index": [
+                6
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv6_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 8,
+            "name": "vgg0_conv5_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 256,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv4_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "new_node_index": 8,
+            "consumer_index": [
+                9
+            ],
+            "provider_index": [
+                7
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_pool2_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 9,
+            "name": "vgg0_conv6_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 256,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 256,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv5_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "new_node_index": 9,
+            "consumer_index": [
+                10
+            ],
+            "provider_index": [
+                8
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_conv7_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 10,
+            "name": "vgg0_pool2_fwd",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 2,
+                "kernel_w": 2,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "vgg0_conv6_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                56,
+                56
+            ],
+            "new_node_index": 10,
+            "consumer_index": [
+                11
+            ],
+            "provider_index": [
+                9
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv8_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 11,
+            "name": "vgg0_conv7_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 256,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_pool2_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                256,
+                28,
+                28
+            ],
+            "new_node_index": 11,
+            "consumer_index": [
+                12
+            ],
+            "provider_index": [
+                10
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv9_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 12,
+            "name": "vgg0_conv8_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 512,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv7_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "new_node_index": 12,
+            "consumer_index": [
+                13
+            ],
+            "provider_index": [
+                11
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_pool3_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 13,
+            "name": "vgg0_conv9_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 512,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv8_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "new_node_index": 13,
+            "consumer_index": [
+                14
+            ],
+            "provider_index": [
+                12
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_conv10_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 14,
+            "name": "vgg0_pool3_fwd",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 2,
+                "kernel_w": 2,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "vgg0_conv9_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                28,
+                28
+            ],
+            "new_node_index": 14,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                13
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv11_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 15,
+            "name": "vgg0_conv10_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 512,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_pool3_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 15,
+            "consumer_index": [
+                16
+            ],
+            "provider_index": [
+                14
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_conv12_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 16,
+            "name": "vgg0_conv11_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 512,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv10_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 16,
+            "consumer_index": [
+                17
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_pool4_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 17,
+            "name": "vgg0_conv12_fwd",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "dilation_h": 1,
+                "dilation_w": 1,
+                "group": 1,
+                "input_channel": 512,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 512,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 1
+            },
+            "provider": [
+                "vgg0_conv11_fwd"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 17,
+            "consumer_index": [
+                18
+            ],
+            "provider_index": [
+                16
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "flatten_60"
+            ],
+            "consumer_num": 1,
+            "index": 18,
+            "name": "vgg0_pool4_fwd",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                512,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 2,
+                "kernel_w": 2,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "vgg0_conv12_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                14,
+                14
+            ],
+            "new_node_index": 18,
+            "consumer_index": [
+                19
+            ],
+            "provider_index": [
+                17
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_dense0_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 19,
+            "name": "flatten_60",
+            "operation": "OP_FLATTEN",
+            "output_dim": [
+                1,
+                25088
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "vgg0_pool4_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                512,
+                7,
+                7
+            ],
+            "new_node_index": 19,
+            "consumer_index": [
+                20
+            ],
+            "provider_index": [
+                18
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_dropout0_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 20,
+            "name": "vgg0_dense0_fwd",
+            "operation": "OP_FC",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "param": {
+                "num_input": 25088,
+                "num_output": 4096,
+                "with_bias": 1
+            },
+            "provider": [
+                "flatten_60"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                25088
+            ],
+            "new_node_index": 20,
+            "consumer_index": [
+                21
+            ],
+            "provider_index": [
+                19
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "flatten_65"
+            ],
+            "consumer_num": 1,
+            "index": 21,
+            "name": "vgg0_dropout0_fwd",
+            "operation": "OP_DROPOUT",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "vgg0_dense0_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 21,
+            "consumer_index": [
+                22
+            ],
+            "provider_index": [
+                20
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_dense1_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 22,
+            "name": "flatten_65",
+            "operation": "OP_FLATTEN",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "vgg0_dropout0_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 22,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                21
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "vgg0_dropout1_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 23,
+            "name": "vgg0_dense1_fwd",
+            "operation": "OP_FC",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "param": {
+                "num_input": 4096,
+                "num_output": 4096,
+                "with_bias": 1
+            },
+            "provider": [
+                "flatten_65"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 23,
+            "consumer_index": [
+                24
+            ],
+            "provider_index": [
+                22
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "flatten_70"
+            ],
+            "consumer_num": 1,
+            "index": 24,
+            "name": "vgg0_dropout1_fwd",
+            "operation": "OP_DROPOUT",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "vgg0_dense1_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 24,
+            "consumer_index": [
+                25
+            ],
+            "provider_index": [
+                23
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "vgg0_dense2_fwd"
+            ],
+            "consumer_num": 1,
+            "index": 25,
+            "name": "flatten_70",
+            "operation": "OP_FLATTEN",
+            "output_dim": [
+                1,
+                4096
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "vgg0_dropout1_fwd"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 25,
+            "consumer_index": [
+                26
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer_num": 0,
+            "index": 26,
+            "name": "vgg0_dense2_fwd",
+            "operation": "OP_FC",
+            "output_dim": [
+                1,
+                1000
+            ],
+            "output_dim_num": 2,
+            "param": {
+                "num_input": 4096,
+                "num_output": 1000,
+                "with_bias": 1
+            },
+            "provider": [
+                "flatten_70"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                4096
+            ],
+            "new_node_index": 26,
+            "consumer_index": [],
+            "provider_index": [
+                25
+            ]
+        }
+    ],
+    "reshape_info": {
+        "name": "vgg0_dense0_fwd",
+        "input_dim": [
+            1,
+            512,
+            7,
+            7
+        ],
+        "output_dim": [
+            1,
+            25088
+        ]
+    }
+}

@@ -1,0 +1,4913 @@
+{
+    "node_list": [
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/conv3_0_1"
+            ],
+            "consumer_num": 1,
+            "index": 0,
+            "name": "gpu_0/data_0",
+            "operation": "OP_INPUT",
+            "output_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "output_dim_num": 4,
+            "provider_num": 0,
+            "new_node_index": 0,
+            "consumer_index": [
+                1
+            ],
+            "provider_index": []
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/pool_0_1"
+            ],
+            "consumer_num": 1,
+            "index": 1,
+            "name": "gpu_0/conv3_0_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                24,
+                112,
+                112
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "input_channel": 3,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 24,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 1
+            },
+            "provider": [
+                "gpu_0/data_0"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                3,
+                224,
+                224
+            ],
+            "new_node_index": 1,
+            "consumer_index": [
+                2
+            ],
+            "provider_index": [
+                0
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_0_1",
+                "gpu_0/pool_1_1"
+            ],
+            "consumer_num": 2,
+            "index": 2,
+            "name": "gpu_0/pool_0_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                24,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 0,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "gpu_0/conv3_0_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                24,
+                112,
+                112
+            ],
+            "new_node_index": 2,
+            "consumer_index": [
+                3,
+                7
+            ],
+            "provider_index": [
+                1
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_0_1"
+            ],
+            "consumer_num": 1,
+            "index": 3,
+            "name": "gpu_0/gconv1_0_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                112,
+                56,
+                56
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 24,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 112,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/pool_0_1"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                24,
+                56,
+                56
+            ],
+            "new_node_index": 3,
+            "consumer_index": [
+                4
+            ],
+            "provider_index": [
+                2
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 4,
+            "name": "gpu_0/shuffle_0_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                112,
+                56,
+                56
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                56,
+                56
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_0_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_0_1"
+            ],
+            "param": {
+                "input_channel": 112,
+                "split_factor": 4
+            },
+            "new_node_index": 4,
+            "consumer_index": [
+                5
+            ],
+            "provider_index": [
+                3
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_1_1"
+            ],
+            "consumer_num": 1,
+            "index": 5,
+            "name": "gpu_0/gconv3_0_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                112,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 112,
+                "input_channel": 112,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 112,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_0_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                56,
+                56
+            ],
+            "new_node_index": 5,
+            "consumer_index": [
+                6
+            ],
+            "provider_index": [
+                4
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block0_1"
+            ],
+            "consumer_num": 1,
+            "index": 6,
+            "name": "gpu_0/gconv1_1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                112,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 112,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 112,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_0_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                28,
+                28
+            ],
+            "new_node_index": 6,
+            "consumer_index": [
+                8
+            ],
+            "provider_index": [
+                5
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block0_1"
+            ],
+            "consumer_num": 1,
+            "index": 7,
+            "name": "gpu_0/pool_1_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                24,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 1,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "gpu_0/pool_0_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                24,
+                56,
+                56
+            ],
+            "new_node_index": 7,
+            "consumer_index": [
+                8
+            ],
+            "provider_index": [
+                2
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block0_2"
+            ],
+            "consumer_num": 1,
+            "index": 8,
+            "name": "gpu_0/block0_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/gconv1_1_1",
+                "gpu_0/pool_1_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                112,
+                28,
+                28
+            ],
+            "new_node_index": 8,
+            "consumer_index": [
+                9
+            ],
+            "provider_index": [
+                6,
+                7
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_2_1",
+                "gpu_0/block1_1"
+            ],
+            "consumer_num": 2,
+            "index": 9,
+            "name": "gpu_0/block0_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block0_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 9,
+            "consumer_index": [
+                10,
+                14
+            ],
+            "provider_index": [
+                8
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_1_1"
+            ],
+            "consumer_num": 1,
+            "index": 10,
+            "name": "gpu_0/gconv1_2_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block0_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 10,
+            "consumer_index": [
+                11
+            ],
+            "provider_index": [
+                9
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 11,
+            "name": "gpu_0/shuffle_1_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_2_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_1_1"
+            ],
+            "param": {
+                "input_channel": 136,
+                "split_factor": 4
+            },
+            "new_node_index": 11,
+            "consumer_index": [
+                12
+            ],
+            "provider_index": [
+                10
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_3_1"
+            ],
+            "consumer_num": 1,
+            "index": 12,
+            "name": "gpu_0/gconv3_1_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 136,
+                "input_channel": 136,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 136,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 12,
+            "consumer_index": [
+                13
+            ],
+            "provider_index": [
+                11
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block1_1"
+            ],
+            "consumer_num": 1,
+            "index": 13,
+            "name": "gpu_0/gconv1_3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_1_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 13,
+            "consumer_index": [
+                14
+            ],
+            "provider_index": [
+                12
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block1_2"
+            ],
+            "consumer_num": 1,
+            "index": 14,
+            "name": "gpu_0/block1_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_3_1",
+                "gpu_0/block0_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 14,
+            "consumer_index": [
+                15
+            ],
+            "provider_index": [
+                13,
+                9
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_4_1",
+                "gpu_0/block2_1"
+            ],
+            "consumer_num": 2,
+            "index": 15,
+            "name": "gpu_0/block1_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block1_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 15,
+            "consumer_index": [
+                16,
+                20
+            ],
+            "provider_index": [
+                14
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_2_1"
+            ],
+            "consumer_num": 1,
+            "index": 16,
+            "name": "gpu_0/gconv1_4_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block1_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 16,
+            "consumer_index": [
+                17
+            ],
+            "provider_index": [
+                15
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 17,
+            "name": "gpu_0/shuffle_2_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_4_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_2_1"
+            ],
+            "param": {
+                "input_channel": 136,
+                "split_factor": 4
+            },
+            "new_node_index": 17,
+            "consumer_index": [
+                18
+            ],
+            "provider_index": [
+                16
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_5_1"
+            ],
+            "consumer_num": 1,
+            "index": 18,
+            "name": "gpu_0/gconv3_2_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 136,
+                "input_channel": 136,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 136,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 18,
+            "consumer_index": [
+                19
+            ],
+            "provider_index": [
+                17
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block2_1"
+            ],
+            "consumer_num": 1,
+            "index": 19,
+            "name": "gpu_0/gconv1_5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_2_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 19,
+            "consumer_index": [
+                20
+            ],
+            "provider_index": [
+                18
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block2_2"
+            ],
+            "consumer_num": 1,
+            "index": 20,
+            "name": "gpu_0/block2_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_5_1",
+                "gpu_0/block1_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 20,
+            "consumer_index": [
+                21
+            ],
+            "provider_index": [
+                19,
+                15
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_6_1",
+                "gpu_0/block3_1"
+            ],
+            "consumer_num": 2,
+            "index": 21,
+            "name": "gpu_0/block2_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block2_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 21,
+            "consumer_index": [
+                22,
+                26
+            ],
+            "provider_index": [
+                20
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_3_1"
+            ],
+            "consumer_num": 1,
+            "index": 22,
+            "name": "gpu_0/gconv1_6_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block2_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 22,
+            "consumer_index": [
+                23
+            ],
+            "provider_index": [
+                21
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 23,
+            "name": "gpu_0/shuffle_3_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_6_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_3_1"
+            ],
+            "param": {
+                "input_channel": 136,
+                "split_factor": 4
+            },
+            "new_node_index": 23,
+            "consumer_index": [
+                24
+            ],
+            "provider_index": [
+                22
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_7_1"
+            ],
+            "consumer_num": 1,
+            "index": 24,
+            "name": "gpu_0/gconv3_3_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 136,
+                "input_channel": 136,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 136,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_3_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 24,
+            "consumer_index": [
+                25
+            ],
+            "provider_index": [
+                23
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block3_1"
+            ],
+            "consumer_num": 1,
+            "index": 25,
+            "name": "gpu_0/gconv1_7_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_3_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 25,
+            "consumer_index": [
+                26
+            ],
+            "provider_index": [
+                24
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block3_2"
+            ],
+            "consumer_num": 1,
+            "index": 26,
+            "name": "gpu_0/block3_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_7_1",
+                "gpu_0/block2_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 26,
+            "consumer_index": [
+                27
+            ],
+            "provider_index": [
+                25,
+                21
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_8_1",
+                "gpu_0/pool_2_1"
+            ],
+            "consumer_num": 2,
+            "index": 27,
+            "name": "gpu_0/block3_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block3_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 27,
+            "consumer_index": [
+                28,
+                32
+            ],
+            "provider_index": [
+                26
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_4_1"
+            ],
+            "consumer_num": 1,
+            "index": 28,
+            "name": "gpu_0/gconv1_8_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block3_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 28,
+            "consumer_index": [
+                29
+            ],
+            "provider_index": [
+                27
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 29,
+            "name": "gpu_0/shuffle_4_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_8_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_4_1"
+            ],
+            "param": {
+                "input_channel": 136,
+                "split_factor": 4
+            },
+            "new_node_index": 29,
+            "consumer_index": [
+                30
+            ],
+            "provider_index": [
+                28
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_9_1"
+            ],
+            "consumer_num": 1,
+            "index": 30,
+            "name": "gpu_0/gconv3_4_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 136,
+                "input_channel": 136,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 136,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_4_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 30,
+            "consumer_index": [
+                31
+            ],
+            "provider_index": [
+                29
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block4_1"
+            ],
+            "consumer_num": 1,
+            "index": 31,
+            "name": "gpu_0/gconv1_9_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                136,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 136,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 136,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_4_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                14,
+                14
+            ],
+            "new_node_index": 31,
+            "consumer_index": [
+                33
+            ],
+            "provider_index": [
+                30
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block4_1"
+            ],
+            "consumer_num": 1,
+            "index": 32,
+            "name": "gpu_0/pool_2_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                136,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 1,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "gpu_0/block3_2"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                28,
+                28
+            ],
+            "new_node_index": 32,
+            "consumer_index": [
+                33
+            ],
+            "provider_index": [
+                27
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block4_2"
+            ],
+            "consumer_num": 1,
+            "index": 33,
+            "name": "gpu_0/block4_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/gconv1_9_1",
+                "gpu_0/pool_2_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                136,
+                14,
+                14
+            ],
+            "new_node_index": 33,
+            "consumer_index": [
+                34
+            ],
+            "provider_index": [
+                31,
+                32
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_10_1",
+                "gpu_0/block5_1"
+            ],
+            "consumer_num": 2,
+            "index": 34,
+            "name": "gpu_0/block4_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block4_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 34,
+            "consumer_index": [
+                35,
+                39
+            ],
+            "provider_index": [
+                33
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_5_1"
+            ],
+            "consumer_num": 1,
+            "index": 35,
+            "name": "gpu_0/gconv1_10_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block4_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 35,
+            "consumer_index": [
+                36
+            ],
+            "provider_index": [
+                34
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 36,
+            "name": "gpu_0/shuffle_5_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_10_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_5_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 36,
+            "consumer_index": [
+                37
+            ],
+            "provider_index": [
+                35
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_11_1"
+            ],
+            "consumer_num": 1,
+            "index": 37,
+            "name": "gpu_0/gconv3_5_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_5_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 37,
+            "consumer_index": [
+                38
+            ],
+            "provider_index": [
+                36
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block5_1"
+            ],
+            "consumer_num": 1,
+            "index": 38,
+            "name": "gpu_0/gconv1_11_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_5_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 38,
+            "consumer_index": [
+                39
+            ],
+            "provider_index": [
+                37
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block5_2"
+            ],
+            "consumer_num": 1,
+            "index": 39,
+            "name": "gpu_0/block5_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_11_1",
+                "gpu_0/block4_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 39,
+            "consumer_index": [
+                40
+            ],
+            "provider_index": [
+                38,
+                34
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_12_1",
+                "gpu_0/block6_1"
+            ],
+            "consumer_num": 2,
+            "index": 40,
+            "name": "gpu_0/block5_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block5_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 40,
+            "consumer_index": [
+                41,
+                45
+            ],
+            "provider_index": [
+                39
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_6_1"
+            ],
+            "consumer_num": 1,
+            "index": 41,
+            "name": "gpu_0/gconv1_12_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block5_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 41,
+            "consumer_index": [
+                42
+            ],
+            "provider_index": [
+                40
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 42,
+            "name": "gpu_0/shuffle_6_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_12_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_6_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 42,
+            "consumer_index": [
+                43
+            ],
+            "provider_index": [
+                41
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_13_1"
+            ],
+            "consumer_num": 1,
+            "index": 43,
+            "name": "gpu_0/gconv3_6_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_6_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 43,
+            "consumer_index": [
+                44
+            ],
+            "provider_index": [
+                42
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block6_1"
+            ],
+            "consumer_num": 1,
+            "index": 44,
+            "name": "gpu_0/gconv1_13_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_6_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 44,
+            "consumer_index": [
+                45
+            ],
+            "provider_index": [
+                43
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block6_2"
+            ],
+            "consumer_num": 1,
+            "index": 45,
+            "name": "gpu_0/block6_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_13_1",
+                "gpu_0/block5_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 45,
+            "consumer_index": [
+                46
+            ],
+            "provider_index": [
+                44,
+                40
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_14_1",
+                "gpu_0/block7_1"
+            ],
+            "consumer_num": 2,
+            "index": 46,
+            "name": "gpu_0/block6_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block6_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 46,
+            "consumer_index": [
+                47,
+                51
+            ],
+            "provider_index": [
+                45
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_7_1"
+            ],
+            "consumer_num": 1,
+            "index": 47,
+            "name": "gpu_0/gconv1_14_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block6_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 47,
+            "consumer_index": [
+                48
+            ],
+            "provider_index": [
+                46
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 48,
+            "name": "gpu_0/shuffle_7_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_14_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_7_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 48,
+            "consumer_index": [
+                49
+            ],
+            "provider_index": [
+                47
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_15_1"
+            ],
+            "consumer_num": 1,
+            "index": 49,
+            "name": "gpu_0/gconv3_7_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_7_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 49,
+            "consumer_index": [
+                50
+            ],
+            "provider_index": [
+                48
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block7_1"
+            ],
+            "consumer_num": 1,
+            "index": 50,
+            "name": "gpu_0/gconv1_15_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_7_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 50,
+            "consumer_index": [
+                51
+            ],
+            "provider_index": [
+                49
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block7_2"
+            ],
+            "consumer_num": 1,
+            "index": 51,
+            "name": "gpu_0/block7_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_15_1",
+                "gpu_0/block6_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 51,
+            "consumer_index": [
+                52
+            ],
+            "provider_index": [
+                50,
+                46
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_16_1",
+                "gpu_0/block8_1"
+            ],
+            "consumer_num": 2,
+            "index": 52,
+            "name": "gpu_0/block7_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block7_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 52,
+            "consumer_index": [
+                53,
+                57
+            ],
+            "provider_index": [
+                51
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_8_1"
+            ],
+            "consumer_num": 1,
+            "index": 53,
+            "name": "gpu_0/gconv1_16_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block7_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 53,
+            "consumer_index": [
+                54
+            ],
+            "provider_index": [
+                52
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 54,
+            "name": "gpu_0/shuffle_8_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_16_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_8_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 54,
+            "consumer_index": [
+                55
+            ],
+            "provider_index": [
+                53
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_17_1"
+            ],
+            "consumer_num": 1,
+            "index": 55,
+            "name": "gpu_0/gconv3_8_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_8_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 55,
+            "consumer_index": [
+                56
+            ],
+            "provider_index": [
+                54
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block8_1"
+            ],
+            "consumer_num": 1,
+            "index": 56,
+            "name": "gpu_0/gconv1_17_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_8_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 56,
+            "consumer_index": [
+                57
+            ],
+            "provider_index": [
+                55
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block8_2"
+            ],
+            "consumer_num": 1,
+            "index": 57,
+            "name": "gpu_0/block8_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_17_1",
+                "gpu_0/block7_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 57,
+            "consumer_index": [
+                58
+            ],
+            "provider_index": [
+                56,
+                52
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_18_1",
+                "gpu_0/block9_1"
+            ],
+            "consumer_num": 2,
+            "index": 58,
+            "name": "gpu_0/block8_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block8_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 58,
+            "consumer_index": [
+                59,
+                63
+            ],
+            "provider_index": [
+                57
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_9_1"
+            ],
+            "consumer_num": 1,
+            "index": 59,
+            "name": "gpu_0/gconv1_18_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block8_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 59,
+            "consumer_index": [
+                60
+            ],
+            "provider_index": [
+                58
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 60,
+            "name": "gpu_0/shuffle_9_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_18_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_9_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 60,
+            "consumer_index": [
+                61
+            ],
+            "provider_index": [
+                59
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_19_1"
+            ],
+            "consumer_num": 1,
+            "index": 61,
+            "name": "gpu_0/gconv3_9_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_9_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 61,
+            "consumer_index": [
+                62
+            ],
+            "provider_index": [
+                60
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block9_1"
+            ],
+            "consumer_num": 1,
+            "index": 62,
+            "name": "gpu_0/gconv1_19_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_9_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 62,
+            "consumer_index": [
+                63
+            ],
+            "provider_index": [
+                61
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block9_2"
+            ],
+            "consumer_num": 1,
+            "index": 63,
+            "name": "gpu_0/block9_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_19_1",
+                "gpu_0/block8_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 63,
+            "consumer_index": [
+                64
+            ],
+            "provider_index": [
+                62,
+                58
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_20_1",
+                "gpu_0/block10_1"
+            ],
+            "consumer_num": 2,
+            "index": 64,
+            "name": "gpu_0/block9_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block9_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 64,
+            "consumer_index": [
+                65,
+                69
+            ],
+            "provider_index": [
+                63
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_10_1"
+            ],
+            "consumer_num": 1,
+            "index": 65,
+            "name": "gpu_0/gconv1_20_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block9_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 65,
+            "consumer_index": [
+                66
+            ],
+            "provider_index": [
+                64
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 66,
+            "name": "gpu_0/shuffle_10_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_20_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_10_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 66,
+            "consumer_index": [
+                67
+            ],
+            "provider_index": [
+                65
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_21_1"
+            ],
+            "consumer_num": 1,
+            "index": 67,
+            "name": "gpu_0/gconv3_10_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_10_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 67,
+            "consumer_index": [
+                68
+            ],
+            "provider_index": [
+                66
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block10_1"
+            ],
+            "consumer_num": 1,
+            "index": 68,
+            "name": "gpu_0/gconv1_21_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_10_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 68,
+            "consumer_index": [
+                69
+            ],
+            "provider_index": [
+                67
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block10_2"
+            ],
+            "consumer_num": 1,
+            "index": 69,
+            "name": "gpu_0/block10_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_21_1",
+                "gpu_0/block9_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 69,
+            "consumer_index": [
+                70
+            ],
+            "provider_index": [
+                68,
+                64
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_22_1",
+                "gpu_0/block11_1"
+            ],
+            "consumer_num": 2,
+            "index": 70,
+            "name": "gpu_0/block10_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block10_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 70,
+            "consumer_index": [
+                71,
+                75
+            ],
+            "provider_index": [
+                69
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_11_1"
+            ],
+            "consumer_num": 1,
+            "index": 71,
+            "name": "gpu_0/gconv1_22_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block10_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 71,
+            "consumer_index": [
+                72
+            ],
+            "provider_index": [
+                70
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 72,
+            "name": "gpu_0/shuffle_11_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_22_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_11_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 72,
+            "consumer_index": [
+                73
+            ],
+            "provider_index": [
+                71
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_23_1"
+            ],
+            "consumer_num": 1,
+            "index": 73,
+            "name": "gpu_0/gconv3_11_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_11_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 73,
+            "consumer_index": [
+                74
+            ],
+            "provider_index": [
+                72
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block11_1"
+            ],
+            "consumer_num": 1,
+            "index": 74,
+            "name": "gpu_0/gconv1_23_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_11_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 74,
+            "consumer_index": [
+                75
+            ],
+            "provider_index": [
+                73
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block11_2"
+            ],
+            "consumer_num": 1,
+            "index": 75,
+            "name": "gpu_0/block11_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_23_1",
+                "gpu_0/block10_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 75,
+            "consumer_index": [
+                76
+            ],
+            "provider_index": [
+                74,
+                70
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_24_1",
+                "gpu_0/pool_3_1"
+            ],
+            "consumer_num": 2,
+            "index": 76,
+            "name": "gpu_0/block11_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block11_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 76,
+            "consumer_index": [
+                77,
+                81
+            ],
+            "provider_index": [
+                75
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_12_1"
+            ],
+            "consumer_num": 1,
+            "index": 77,
+            "name": "gpu_0/gconv1_24_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block11_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 77,
+            "consumer_index": [
+                78
+            ],
+            "provider_index": [
+                76
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 78,
+            "name": "gpu_0/shuffle_12_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_24_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_12_1"
+            ],
+            "param": {
+                "input_channel": 272,
+                "split_factor": 4
+            },
+            "new_node_index": 78,
+            "consumer_index": [
+                79
+            ],
+            "provider_index": [
+                77
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_25_1"
+            ],
+            "consumer_num": 1,
+            "index": 79,
+            "name": "gpu_0/gconv3_12_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 272,
+                "input_channel": 272,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 272,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 2,
+                "stride_w": 2,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_12_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 79,
+            "consumer_index": [
+                80
+            ],
+            "provider_index": [
+                78
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block12_1"
+            ],
+            "consumer_num": 1,
+            "index": 80,
+            "name": "gpu_0/gconv1_25_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                272,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 272,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 272,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_12_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                7,
+                7
+            ],
+            "new_node_index": 80,
+            "consumer_index": [
+                82
+            ],
+            "provider_index": [
+                79
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block12_1"
+            ],
+            "consumer_num": 1,
+            "index": 81,
+            "name": "gpu_0/pool_3_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                272,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "pool_method": 1,
+                "stride_h": 2,
+                "stride_w": 2
+            },
+            "provider": [
+                "gpu_0/block11_2"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                14,
+                14
+            ],
+            "new_node_index": 81,
+            "consumer_index": [
+                82
+            ],
+            "provider_index": [
+                76
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block12_2"
+            ],
+            "consumer_num": 1,
+            "index": 82,
+            "name": "gpu_0/block12_1",
+            "operation": "OP_CONCAT",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/gconv1_25_1",
+                "gpu_0/pool_3_1"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                272,
+                7,
+                7
+            ],
+            "new_node_index": 82,
+            "consumer_index": [
+                83
+            ],
+            "provider_index": [
+                80,
+                81
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_26_1",
+                "gpu_0/block13_1"
+            ],
+            "consumer_num": 2,
+            "index": 83,
+            "name": "gpu_0/block12_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block12_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 83,
+            "consumer_index": [
+                84,
+                88
+            ],
+            "provider_index": [
+                82
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_13_1"
+            ],
+            "consumer_num": 1,
+            "index": 84,
+            "name": "gpu_0/gconv1_26_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block12_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 84,
+            "consumer_index": [
+                85
+            ],
+            "provider_index": [
+                83
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 85,
+            "name": "gpu_0/shuffle_13_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_26_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_13_1"
+            ],
+            "param": {
+                "input_channel": 544,
+                "split_factor": 4
+            },
+            "new_node_index": 85,
+            "consumer_index": [
+                86
+            ],
+            "provider_index": [
+                84
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_27_1"
+            ],
+            "consumer_num": 1,
+            "index": 86,
+            "name": "gpu_0/gconv3_13_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 544,
+                "input_channel": 544,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 544,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_13_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 86,
+            "consumer_index": [
+                87
+            ],
+            "provider_index": [
+                85
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block13_1"
+            ],
+            "consumer_num": 1,
+            "index": 87,
+            "name": "gpu_0/gconv1_27_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_13_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 87,
+            "consumer_index": [
+                88
+            ],
+            "provider_index": [
+                86
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block13_2"
+            ],
+            "consumer_num": 1,
+            "index": 88,
+            "name": "gpu_0/block13_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_27_1",
+                "gpu_0/block12_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 88,
+            "consumer_index": [
+                89
+            ],
+            "provider_index": [
+                87,
+                83
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_28_1",
+                "gpu_0/block14_1"
+            ],
+            "consumer_num": 2,
+            "index": 89,
+            "name": "gpu_0/block13_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block13_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 89,
+            "consumer_index": [
+                90,
+                94
+            ],
+            "provider_index": [
+                88
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_14_1"
+            ],
+            "consumer_num": 1,
+            "index": 90,
+            "name": "gpu_0/gconv1_28_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block13_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 90,
+            "consumer_index": [
+                91
+            ],
+            "provider_index": [
+                89
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 91,
+            "name": "gpu_0/shuffle_14_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_28_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_14_1"
+            ],
+            "param": {
+                "input_channel": 544,
+                "split_factor": 4
+            },
+            "new_node_index": 91,
+            "consumer_index": [
+                92
+            ],
+            "provider_index": [
+                90
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_29_1"
+            ],
+            "consumer_num": 1,
+            "index": 92,
+            "name": "gpu_0/gconv3_14_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 544,
+                "input_channel": 544,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 544,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_14_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 92,
+            "consumer_index": [
+                93
+            ],
+            "provider_index": [
+                91
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block14_1"
+            ],
+            "consumer_num": 1,
+            "index": 93,
+            "name": "gpu_0/gconv1_29_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_14_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 93,
+            "consumer_index": [
+                94
+            ],
+            "provider_index": [
+                92
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block14_2"
+            ],
+            "consumer_num": 1,
+            "index": 94,
+            "name": "gpu_0/block14_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_29_1",
+                "gpu_0/block13_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 94,
+            "consumer_index": [
+                95
+            ],
+            "provider_index": [
+                93,
+                89
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/gconv1_30_1",
+                "gpu_0/block15_1"
+            ],
+            "consumer_num": 2,
+            "index": 95,
+            "name": "gpu_0/block14_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block14_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 95,
+            "consumer_index": [
+                96,
+                100
+            ],
+            "provider_index": [
+                94
+            ]
+        },
+        {
+            "act_type": 0,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/shuffle_15_1"
+            ],
+            "consumer_num": 1,
+            "index": 96,
+            "name": "gpu_0/gconv1_30_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/block14_2"
+            ],
+            "provider_num": 1,
+            "with_act": 1,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 96,
+            "consumer_index": [
+                97
+            ],
+            "provider_index": [
+                95
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "index": 97,
+            "name": "gpu_0/shuffle_15_1",
+            "operation": "OP_SHUFFLE",
+            "output_dim_num": 4,
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "provider_num": 1,
+            "provider": [
+                "gpu_0/gconv1_30_1"
+            ],
+            "consumer_num": 1,
+            "consumer": [
+                "gpu_0/gconv3_15_1"
+            ],
+            "param": {
+                "input_channel": 544,
+                "split_factor": 4
+            },
+            "new_node_index": 97,
+            "consumer_index": [
+                98
+            ],
+            "provider_index": [
+                96
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/gconv1_31_1"
+            ],
+            "consumer_num": 1,
+            "index": 98,
+            "name": "gpu_0/gconv3_15_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 544,
+                "input_channel": 544,
+                "kernel_h": 3,
+                "kernel_w": 3,
+                "output_channel": 544,
+                "pad_h0": 1,
+                "pad_h1": 1,
+                "pad_w0": 1,
+                "pad_w1": 1,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/shuffle_15_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 98,
+            "consumer_index": [
+                99
+            ],
+            "provider_index": [
+                97
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/block15_1"
+            ],
+            "consumer_num": 1,
+            "index": 99,
+            "name": "gpu_0/gconv1_31_1",
+            "operation": "OP_CONV",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "group": 4,
+                "input_channel": 544,
+                "kernel_h": 1,
+                "kernel_w": 1,
+                "output_channel": 544,
+                "pad_h0": 0,
+                "pad_h1": 0,
+                "pad_w0": 0,
+                "pad_w1": 0,
+                "stride_h": 1,
+                "stride_w": 1,
+                "with_bias": 0
+            },
+            "provider": [
+                "gpu_0/gconv3_15_1"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 1,
+            "with_clip": 0,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 99,
+            "consumer_index": [
+                100
+            ],
+            "provider_index": [
+                98
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/block15_2"
+            ],
+            "consumer_num": 1,
+            "index": 100,
+            "name": "gpu_0/block15_1",
+            "operation": "OP_ELTWISE",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "eletype": 2
+            },
+            "provider": [
+                "gpu_0/gconv1_31_1",
+                "gpu_0/block14_2"
+            ],
+            "provider_num": 2,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 100,
+            "consumer_index": [
+                101
+            ],
+            "provider_index": [
+                99,
+                95
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/final_avg_1"
+            ],
+            "consumer_num": 1,
+            "index": 101,
+            "name": "gpu_0/block15_2",
+            "operation": "OP_RELU",
+            "output_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "output_dim_num": 4,
+            "provider": [
+                "gpu_0/block15_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 101,
+            "consumer_index": [
+                102
+            ],
+            "provider_index": [
+                100
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "OC2_DUMMY_64"
+            ],
+            "consumer_num": 1,
+            "index": 102,
+            "name": "gpu_0/final_avg_1",
+            "operation": "OP_POOL",
+            "output_dim": [
+                1,
+                544,
+                1,
+                1
+            ],
+            "output_dim_num": 4,
+            "param": {
+                "global": 0,
+                "kernel_h": 7,
+                "kernel_w": 7,
+                "pool_method": 1,
+                "stride_h": 1,
+                "stride_w": 1
+            },
+            "provider": [
+                "gpu_0/block15_2"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                7,
+                7
+            ],
+            "new_node_index": 102,
+            "consumer_index": [
+                103
+            ],
+            "provider_index": [
+                101
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer": [
+                "gpu_0/pred_1"
+            ],
+            "consumer_num": 1,
+            "index": 103,
+            "name": "OC2_DUMMY_64",
+            "operation": "OP_RESHAPE",
+            "output_dim": [
+                1,
+                544
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "gpu_0/final_avg_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 4,
+            "input_dim": [
+                1,
+                544,
+                1,
+                1
+            ],
+            "new_node_index": 103,
+            "consumer_index": [
+                104
+            ],
+            "provider_index": [
+                102
+            ]
+        },
+        {
+            "act_type": -1,
+            "bitwidth": 16,
+            "clip_max": 10000000,
+            "clip_min": -10000000,
+            "consumer": [
+                "gpu_0/softmax_1"
+            ],
+            "consumer_num": 1,
+            "index": 104,
+            "name": "gpu_0/pred_1",
+            "operation": "OP_FC",
+            "output_dim": [
+                1,
+                1000
+            ],
+            "output_dim_num": 2,
+            "param": {
+                "num_input": 544,
+                "num_output": 1000,
+                "with_bias": 1
+            },
+            "provider": [
+                "OC2_DUMMY_64"
+            ],
+            "provider_num": 1,
+            "with_act": 0,
+            "with_bn": 0,
+            "with_clip": 0,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                544
+            ],
+            "new_node_index": 104,
+            "consumer_index": [
+                105
+            ],
+            "provider_index": [
+                103
+            ]
+        },
+        {
+            "bitwidth": 16,
+            "consumer_num": 0,
+            "index": 105,
+            "name": "gpu_0/softmax_1",
+            "operation": "OP_SOFTMAX",
+            "output_dim": [
+                1,
+                1000
+            ],
+            "output_dim_num": 2,
+            "provider": [
+                "gpu_0/pred_1"
+            ],
+            "provider_num": 1,
+            "input_dim_num": 2,
+            "input_dim": [
+                1,
+                1000
+            ],
+            "new_node_index": 105,
+            "consumer_index": [],
+            "provider_index": [
+                104
+            ]
+        }
+    ],
+    "reshape_info": {
+        "name": "gpu_0/pred_1",
+        "input_dim": [
+            1,
+            544,
+            1,
+            1
+        ],
+        "output_dim": [
+            1,
+            544
+        ]
+    }
+}
