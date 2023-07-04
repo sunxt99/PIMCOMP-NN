@@ -49,10 +49,10 @@ To compile the backend using cmake, you need to meet the following requirements.
 
 We can convert ONNX model to the input file of backend in JSON format containing node parameters and topological connections of the DNN network. The backend reads this file for subsequent processes.
 
-Users can download ONNX model from [ONNX Model Zoo](https://github.com/onnx/models) and save the model to `PIMCOMP-OPEN/models/ONNX/`. The output file will be saved in `PIMCOMP-OPEN/models/JSON/`. In order to facilitate users to use PIMCOMP-NN, we have converted some commonly used network models into json files in advance and users can directly use the backend to generate instructions.
+Users can download ONNX model from [ONNX Model Zoo](https://github.com/onnx/models) and save the model to `PIMCOMP-NN/models/ONNX/`. The output file will be saved in `PIMCOMP-NN/models/JSON/`. In order to facilitate users to use PIMCOMP-NN, we have converted some commonly used network models into json files in advance and users can directly use the backend to generate instructions.
 
 ```shell
-cd PIMCOMP-OPEN/frontend/
+cd PIMCOMP-NN/frontend/
 python frontend.py --model_path ../models/ONNX/resnet18.onnx --save_path ../models/JSON/resnet18.json
 ```
 
@@ -76,7 +76,7 @@ The hardware information is configured in configure.h.
 ### Building
 
 ```shell
-cd PIMCOMP-OPEN
+cd PIMCOMP-NN
 mkdir build
 cd build
 cmake ..
@@ -95,30 +95,30 @@ make
 | -i         | save intermediate information or not     | YES/NO                  | NO            |
 | -s         | save instruction for simulation or not   | YES/NO                  | NO            |
 
-For example, if you have `resnet18.json` in `PIMCOMP-OPEN/models/JSON/` and want to compile it using balance replication method and element pipeline (low latency mode). 
+For example, if you have `resnet18.json` in `PIMCOMP-NN/models/JSON/` and want to compile it using balance replication method and element pipeline (low latency mode). 
 
 ```shell
-./PIMCOMP-OPEN –m=resnet18 –r=balance –p=element –o=NO –v=NO –i=NO -s=NO
+./PIMCOMP-NN –m=resnet18 –r=balance –p=element –o=NO –v=NO –i=NO -s=NO
 ```
 
-The model name is a required parameter. If you set `-m=MODEL_NAME`, then the backend will search and load  `MODEL_NAME.json` in `PIMCOMP-OPEN/models/JSON/`.
+The model name is a required parameter. If you set `-m=MODEL_NAME`, then the backend will search and load  `MODEL_NAME.json` in `PIMCOMP-NN/models/JSON/`.
 
 Balance, W0H0, uniform and GA are different replicating strategies from the perspectives of calculation balance, layer size balance, unified replication and performance, respectively.
 
-If you want to save the evaluation result of the whole instruction stream, please set `-o=YES` and the result will be saved in `PIMCOMP-OPEN/output/EvaluationResult.txt`.
+If you want to save the evaluation result of the whole instruction stream, please set `-o=YES` and the result will be saved in `PIMCOMP-NN/output/EvaluationResult.txt`.
 
-If you want to save the instruction and other information for verification, please set `-v=YES` and the result will be saved in `PIMCOMP-OPEN/output/VerificationInfo.json`.
+If you want to save the instruction and other information for verification, please set `-v=YES` and the result will be saved in `PIMCOMP-NN/output/VerificationInfo.json`.
 
-If you want to save the intermediate information during compiling, please set `-i=YES` and the result will be saved in `PIMCOMP-OPEN/output/IntermediateInfo.json`.
+If you want to save the intermediate information during compiling, please set `-i=YES` and the result will be saved in `PIMCOMP-NN/output/IntermediateInfo.json`.
 
-If you want to save the instruction for more detailed simulation using pimsim-nn, please set `-s=YES` and the result will be saved in `PIMCOMP-OPEN/output/SimulationInfo.gz`.
+If you want to save the instruction for more detailed simulation using pimsim-nn, please set `-s=YES` and the result will be saved in `PIMCOMP-NN/output/SimulationInfo.gz`.
 
 ## Verification
 
-The verification program is used to verify the generated instruction stream. Before verifying, please set `-v=YES` when calling the PIMCOMP-OPEN backend and the instruction for verification will be saved in `PIMCOMP-OPEN/output/VerificationInfo.json`.
+The verification program is used to verify the generated instruction stream. Before verifying, please set `-v=YES` when calling the PIMCOMP-NN backend and the instruction for verification will be saved in `PIMCOMP-NN/output/VerificationInfo.json`.
 
 ```shell
-cd PIMCOMP-OPEN/verification/
+cd PIMCOMP-NN/verification/
 python verification.py --model_path ../models/ONNX/resnet18.onnx --pipeline_type element
 ```
 
@@ -150,7 +150,7 @@ Please note the following information if you want to compile new model using PIM
 
 # Author
 
-Xiaotian Sun (sunxiaotian21s@ict.ac.cn)
+sunxiaotian21s@ict.ac.cn
 
 # Acknowledgement
 
