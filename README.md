@@ -1,14 +1,16 @@
 # PIMCOMP-NN
 
-PIMCOMP-NN is a compilation optimization framework designed for crossbar-based PIM DNN accelerators. The project comprises three submodules: frontend, backend, and verification program. With PIMCOMP-NN, we can conveniently compile the DNN model to get the instruction flow that can be executed on the PIM accelerators.
+PIMCOMP-NN is a compilation optimization framework designed for crossbar-based PIM DNN accelerators. The project comprises three submodules: frontend, backend, and verification program. With PIMCOMP-NN, we can conveniently compile DNN models to get the instruction flow that can be executed on PIM accelerators.
 
 We design a frontend to load and parse DNN models in [ONNX](https://github.com/onnx/onnx) format and generate the input file for the backend.
 
-Backend is the core part of PIMCOMP-NN. The overview of backend is shown in the following figure. The entire backend includes 4 key stages. Node Partition describes the rules for partitioning weight data to fit for the PIM crossbars. Weight Replicating determines the replication numbers of different nodes. Core Mapping decides the mapping relationship between crossbars and cores and Dataflow Scheduling performs scheduling and optimization according to user’s requirement to generate control flow or instruction flow. In addition to these four stages, PIMCOMP-NN also has some pre-processing and post-optimization. In order to expand the scope of application of the PIM accelerators, we provide two compilation modes for users to choose from: High Throughput (batch pipeline) and Low Latency (element pipeline), which are suitable for scenarios with continuous input data of large batches and intermittent input of a small amount, respectively. 
+The backend is the core part of PIMCOMP-NN. The overview of backend is shown in the following figure. The entire backend includes 4 key stages. Node Partition describes the rules for partitioning weight data to fit for the PIM crossbars. Weight Replicating determines the replication numbers of different nodes. Core Mapping decides the mapping relationship between crossbars and cores and Dataflow Scheduling performs scheduling and optimization according to user’s requirement to generate control flow or instruction flow. In addition to these four stages, PIMCOMP-NN also has some pre-processing and post-optimization. In order to expand the scope of application of the PIM accelerators, we provide two compilation modes for users to choose from: High Throughput (batch pipeline) and Low Latency (element pipeline), which are suitable for scenarios with continuous input data of large batches and intermittent input of a small amount, respectively. 
 
 ![overview](https://typora-ict.oss-cn-beijing.aliyuncs.com/img/202307022208317.png)
 
-We also designed a verification program to verify the correctness of the instruction stream. We simulate the calculation results instruction by instruction and compare them with results obtained by ONNX runtime.
+We also design a verification program to verify the correctness of the instruction stream. We simulate the calculation results instruction by instruction and compare them with results obtained by ONNX runtime.
+
+PIMCOMP-NN has an associated simulator, [pimsim-nn](https://github.com/wangxy-2000/pimsim-nn). The produced instruction stream can be simulated by the simulator to estimate the performance (inference latency and/or throughput), power dissipation, and energy consumption, using the same architecture configuration.
 
 # Usability
 
@@ -137,7 +139,7 @@ We have compiled and validated these models below.
 
 ## To compile new model
 
-Please note the following information if you want to compile new model using PIMCOMP-NN.
+Please note the following information if you want to compile a new model using PIMCOMP-NN.
 
 1. Currently operators such as CONV/Group CONV/FC/POOL/ADD/CONCAT/ReLU are supported.
 2. Specify last_node_index and last_node_output_channel_num if you choose element pipeline in ElementPipelineSchedule.cpp
@@ -146,11 +148,15 @@ Please note the following information if you want to compile new model using PIM
 
 # Citing PIMCOMP-NN
 
-**Citation Information**: Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, [PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators](https://typora-ict.oss-cn-beijing.aliyuncs.com/paper/PIMCOMP.pdf), in Design Automation Conference, 2023
+**Citation Information**: Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, ["PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators"](https://typora-ict.oss-cn-beijing.aliyuncs.com/paper/PIMCOMP.pdf), in Design Automation Conference (DAC'23), 2023.
 
-# Author
+# Code Author
 
-sunxiaotian21s@ict.ac.cn
+[Xiaotian Sun](sunxiaotian21s@ict.ac.cn) (Institute of Computing Technology, Chinese Academy of Sciences)
+
+## Project PI
+
+[Xiaoming Chen](https://people.ucas.edu.cn/~chenxm)
 
 # License
 
