@@ -154,7 +154,7 @@ Please note the following information if you want to compile a new model using P
 
 [Xiaotian Sun](sunxiaotian21s@ict.ac.cn) (Institute of Computing Technology, Chinese Academy of Sciences)
 
-## Project PI
+# Project PI
 
 [Xiaoming Chen](https://people.ucas.edu.cn/~chenxm)
 
