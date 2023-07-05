@@ -162,7 +162,7 @@ Please note the following information if you want to compile a new model using P
 
 [Apache License v2.0](https://github.com/sunxt99/PIMCOMP-NN/blob/master/LICENSE)
 
-# Acknowledgement
+# Acknowledgements
 
 [onnx](https://github.com/onnx/onnx)
 
