@@ -90,7 +90,7 @@ make
 | Parameters | Description                              | Options                 | Default       |
 | ---------- | ---------------------------------------- | ----------------------- | ------------- |
 | -m         | model name                               |                         | MUST be given |
-| -r         | replicating method                       | balance/W0H0/uniform/GA | balance       |
+| -r         | weight replicating method                | balance/W0H0/uniform/GA | balance       |
 | -p         | pipeline granularity                     | element/batch           | batch         |
 | -o         | save evaluation output or not            | YES/NO                  | NO            |
 | -v         | save instruction for verification or not | YES/NO                  | NO            |
@@ -105,7 +105,7 @@ For example, if you have `resnet18.json` in `PIMCOMP-NN/models/JSON/` and want t
 
 The model name is a required parameter. If you set `-m=MODEL_NAME`, then the backend will search and load  `MODEL_NAME.json` in `PIMCOMP-NN/models/JSON/`.
 
-Balance, W0H0, uniform and GA are different replicating strategies from the perspectives of calculation balance, layer size balance, unified replication and performance, respectively.
+Balance, W0H0, uniform and GA are different weight replicating strategies from the perspectives of calculation balance, layer size balance, unified replication and performance, respectively.
 
 If you want to save the evaluation result of the whole instruction stream, please set `-o=YES` and the result will be saved in `PIMCOMP-NN/output/EvaluationResult.txt`.
 
