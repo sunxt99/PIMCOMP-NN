@@ -60,18 +60,18 @@ python frontend.py --model_path ../models/ONNX/resnet18.onnx --save_path ../mode
 
 ### Hardware configuration
 
-The hardware information is configured in configure.h.
+The hardware information is defined in `Preparation.cpp` and the value of these parameters are configured in `config.json`. Other unused parameters in `config.json` are used for pimsim-nn for simulation.
 
-| Parameters          | Description                                     |
-| ------------------- | ----------------------------------------------- |
-| ArithmeticPrecision | precision of input, weight and output           |
-| CellPrecision       | precision of crossbar cell                      |
-| CrossbarW           | width of an NVM crossbar                        |
-| CrossbarH           | height of an NVM crossbar                       |
-| CoreW               | \#logical crossbars in every row of one core    |
-| CoreH               | \#logical crossbars in every column of one core |
-| ChipW               | \#cores in every row of one chip                |
-| ChipH               | \#cores in every column of one chip             |
+| Parameters          | Description                                     | Definition in config.json |
+| ------------------- | ----------------------------------------------- | ------------------------- |
+| ArithmeticPrecision | precision of input, weight and output           | adc_count                 |
+| CellPrecision       | precision of crossbar cell                      | cell_precision            |
+| CrossbarW           | width of an NVM crossbar                        | xbar_size[1]              |
+| CrossbarH           | height of an NVM crossbar                       | xbar_size[0]              |
+| CoreW               | \#logical crossbars in every row of one core    | 1                         |
+| CoreH               | \#logical crossbars in every column of one core | xbar_array_count          |
+| ChipW               | \#cores in every row of one chip                | layout[1]                 |
+| ChipH               | \#cores in every column of one chip             | layout[0]                 |
 
 ### Building
 
