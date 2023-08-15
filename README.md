@@ -12,6 +12,8 @@ We also design a verification program to verify the correctness of the instructi
 
 PIMCOMP-NN has an associated simulator, [pimsim-nn](https://github.com/wangxy-2000/pimsim-nn). The produced instruction stream can be simulated by the simulator to estimate the performance (inference latency and/or throughput), power dissipation, and energy consumption, using the same architecture configuration.
 
+The ISA of PIMCOMP-NN is based on the document published [here](https://arxiv.org/abs/2308.06449).
+
 # Usability
 
 To describe the operation of DNN network in detail and retain generality, we propose a general and representative NVM crossbar based accelerator architecture as a hardware abstraction. At a high level, the accelerator consists of multiple cores interconnected through NoC or busses. The weights of the neural network are stored in the cores, while the inputs, outputs and intermediate results are stored in the global memory or local memory. Each core has **PIM matrix unit** to compute matrix-vector-multiplication, and **vector functional unit** to perform vector operations.
