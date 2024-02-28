@@ -1,6 +1,8 @@
-@inproceedings{PIMCOMP-NN,
-  title = {{PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators}},
-  booktitle = {2023 Design Automation Conference (DAC'23)},
-  author = {Xiaotian Sun and Xinyu Wang and Wanqian Li and Lei Wang and Yinhe Han and Xiaoming Chen},
-  year = {2023},
-}
+@INPROCEEDINGS{PIMCOMP-NN,
+  author={Sun, Xiaotian and Wang, Xinyu and Li, Wanqian and Wang, Lei and Han, Yinhe and Chen, Xiaoming},
+  booktitle={2023 60th ACM/IEEE Design Automation Conference (DAC)}, 
+  title={{PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators}}, 
+  year={2023},
+  pages={1-6},
+  keywords={Power demand;Design automation;Pipelines;Accelerator architectures;Parallel processing;Throughput;Low latency communication;NVM;PIM accelerator;deep neural network;compilation framework},
+  doi={10.1109/DAC56929.2023.10247928}}

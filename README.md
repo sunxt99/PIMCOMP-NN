@@ -150,7 +150,7 @@ Please note the following information if you want to compile a new model using P
 
 # Citing PIMCOMP-NN
 
-[1] Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, ["PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators"](https://arxiv.org/abs/2307.01475), in Design Automation Conference (DAC'23), 2023.  [[Bibtex](https://github.com/sunxt99/PIMCOMP-NN/tree/master/doc/bibtex.txt)]
+[1] Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, ["PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators"](https://ieeexplore.ieee.org/document/10247928), in Design Automation Conference (DAC'23), 2023.  [[Bibtex](https://github.com/sunxt99/PIMCOMP-NN/tree/master/doc/bibtex.txt)] [[ArXiv](https://arxiv.org/abs/2307.01475)]
 
 # Code Author
 
