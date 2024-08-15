@@ -102,7 +102,7 @@ make
 For example, if you have `resnet18.json` in `PIMCOMP-NN/models/JSON/` and want to compile it using balance replication method and element pipeline (low latency mode). 
 
 ```shell
-./PIMCOMP-NN –m=resnet18 –r=balance –p=element –o=NO –v=NO –i=NO -s=NO
+./PIMCOMP-NN -m=resnet18 -r=balance -p=element -o=NO -v=NO -i=NO -s=NO
 ```
 
 The model name is a required parameter. If you set `-m=MODEL_NAME`, then the backend will search and load  `MODEL_NAME.json` in `PIMCOMP-NN/models/JSON/`.
