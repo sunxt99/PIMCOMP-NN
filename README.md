@@ -152,6 +152,8 @@ Please note the following information if you want to compile a new model using P
 
 [1] Xiaotian Sun, Xinyu Wang, Wanqian Li, Lei Wang, Yinhe Han, Xiaoming Chen, ["PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators"](https://ieeexplore.ieee.org/document/10247928), in Design Automation Conference (DAC'23), 2023.  [[Bibtex](https://github.com/sunxt99/PIMCOMP-NN/tree/master/doc/bibtex.txt)] [[ArXiv](https://arxiv.org/abs/2307.01475)]
 
+[2] Xiaotian Sun, Xinyu Wang, Wanqian Li, Yinhe Han, Xiaoming Chen, ["PIMCOMP: An End-to-End DNN Compiler for Processing-In-Memory Accelerators"](https://ieeexplore.ieee.org/document/10750525), IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems.  [[Bibtex](https://github.com/sunxt99/PIMCOMP-NN/tree/master/doc/bibtex.txt)] [[ArXiv](https://arxiv.org/abs/2411.09159)]
+
 # Code Author
 
 [Xiaotian Sun](sunxiaotian21s@ict.ac.cn) (Institute of Computing Technology, Chinese Academy of Sciences)

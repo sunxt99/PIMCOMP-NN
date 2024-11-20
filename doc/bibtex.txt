@@ -1,4 +1,4 @@
-@INPROCEEDINGS{PIMCOMP-NN,
+@INPROCEEDINGS{pimcomp_dac,
   author={Sun, Xiaotian and Wang, Xinyu and Li, Wanqian and Wang, Lei and Han, Yinhe and Chen, Xiaoming},
   booktitle={2023 60th ACM/IEEE Design Automation Conference (DAC)}, 
   title={{PIMCOMP: A Universal Compilation Framework for Crossbar-based PIM DNN Accelerators}}, 
@@ -6,3 +6,14 @@
   pages={1-6},
   keywords={Power demand;Design automation;Pipelines;Accelerator architectures;Parallel processing;Throughput;Low latency communication;NVM;PIM accelerator;deep neural network;compilation framework},
   doi={10.1109/DAC56929.2023.10247928}}
+
+@ARTICLE{pimcomp_tcad,
+  author={Sun, Xiaotian and Wang, Xinyu and Li, Wanqian and Han, Yinhe and Chen, Xiaoming},
+  journal={IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems}, 
+  title={{PIMCOMP: An End-to-End DNN Compiler for Processing-In-Memory Accelerators}}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Hardware;Optimization;Artificial neural networks;Pipelines;Parallel processing;Biological system modeling;Resource management;Adaptation models;Scheduling;Memory management;Processing-in-memory accelerator;deep neural network;end-to-end compiler;system-level optimization},
+  doi={10.1109/TCAD.2024.3496847}}
