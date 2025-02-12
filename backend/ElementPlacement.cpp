@@ -285,6 +285,23 @@ void ElementPlacement::SaveSimulationInfo()
     for (int i = 0; i < AG_num; ++i)
         AG_crossbar_num[i] = PIMCOMP_3_hierarchy_map.whole[i].size();
 
+    // AG_index_in_total to AG_index_in_core
+    std::vector<int> AG_index_in_total_2_AG_index_in_core;
+    AG_index_in_total_2_AG_index_in_core.resize(AG_num);
+    for (int i = 0; i < ChipH * ChipW; ++i)
+    {
+        if (PIMCOMP_4_virtual_core_AG_map.core_list[i].AG_list.size() == 0)
+            continue;
+        int AG_num_in_core = PIMCOMP_4_virtual_core_AG_map.core_list[i].AG_list.size();
+        for (int j = 0; j < AG_num_in_core; ++j)
+        {
+            int AG_index_in_total = PIMCOMP_4_virtual_core_AG_map.core_list[i].AG_list[j].AG_index_in_total;
+            AG_index_in_total_2_AG_index_in_core[AG_index_in_total] = j;
+        }
+    }
+
+    std::set<int> setbw_set;
+
     Json::Value offset;
     offset["offset_value"] = 0;
     offset["offset_select"] = 0;
@@ -296,14 +313,17 @@ void ElementPlacement::SaveSimulationInfo()
             int instruction_num = PIMCOMP_8_base_instruction_ir_with_placement[i].core_list[j].instruction_ir_list.size();
             if (instruction_num == 0)
                 continue;
-            if (i == 0)
+
+            if (setbw_set.count(j) == 0)
             {
+                setbw_set.insert(j);
                 Json::Value SetbwInstruction;
                 SetbwInstruction["op"] = "setbw";
                 SetbwInstruction["ibiw"] = 8;
                 SetbwInstruction["obiw"] = 8;
                 PIMCOMP_SIMULATION_INFO[core_name].append(SetbwInstruction);
             }
+
             long long byw = 1;
             for (int k = 0; k < instruction_num; ++k)
             {
@@ -331,7 +351,8 @@ void ElementPlacement::SaveSimulationInfo()
                         Json::Value JsonInstruction;
                         JsonInstruction["op"] = Operation;
                         int AG_index = Instruction.source;
-                        JsonInstruction["group"] = AG_crossbar_num[AG_index];
+//                        JsonInstruction["group"] = AG_crossbar_num[AG_index];
+                        JsonInstruction["group"] = AG_index_in_total_2_AG_index_in_core[AG_index];
                         JsonInstruction["relu"] = 0;
                         JsonInstruction["rd"] = 0;
                         JsonInstruction["rs1"] = 1;
@@ -491,13 +512,28 @@ void ElementPlacement::SaveSimulationInfo()
         }
     }
 
-    int core_cnt = PIMCOMP_SIMULATION_INFO.size();
+//    int core_cnt = PIMCOMP_SIMULATION_INFO.size();
+    int core_cnt = ChipH * ChipW;
     PIMCOMP_SIMULATION_INFO["config"]["core_cnt"] = core_cnt;
     PIMCOMP_SIMULATION_INFO["config"]["xbar_size"][0] = CrossbarH;
     PIMCOMP_SIMULATION_INFO["config"]["xbar_size"][1] = CrossbarW;
     PIMCOMP_SIMULATION_INFO["config"]["xbar_array_count"] = CoreH * CoreW;
     PIMCOMP_SIMULATION_INFO["config"]["cell_precision"] = CellPrecision;
     PIMCOMP_SIMULATION_INFO["config"]["adc_count"] = ArithmeticPrecision;
+    // to simulate parallel
+    for (int i = 0; i < ChipW * ChipH; ++i)
+    {
+        int core_index = i;
+        std::string core_name = "core" + std::to_string(i);
+
+        int AG_num_this_core = PIMCOMP_4_virtual_core_AG_map.core_list[core_index].AG_list.size();
+        std::vector<int> crossbar_num_per_AG;
+        for (int j = 0; j < AG_num_this_core; ++j)
+        {
+            int node_index = PIMCOMP_4_virtual_core_AG_map.core_list[i].node_list[j];
+            PIMCOMP_SIMULATION_INFO["config"]["array_group_map"][core_name][j] = static_cast<int>(ceil(float(PIMCOMP_node_list[node_index].W) / float(CrossbarW)));
+        }
+    }
 
     std::string strJson = PIMCOMP_SIMULATION_INFO.toStyledString();
 //    std::ofstream fob("../output/SimulationResult.json", std::ios::trunc | std::ios::out);
